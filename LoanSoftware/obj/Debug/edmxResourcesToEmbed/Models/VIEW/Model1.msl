@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LoanDBModelStoreContainer" CdmEntityContainer="LoanDBEntities">
+    <EntitySetMapping Name="VBranchLimits">
+      <EntityTypeMapping TypeName="LoanDBModel.VBranchLimit">
+        <MappingFragment StoreEntitySet="VBranchLimit">
+          <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+          <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPendingLists">
+      <EntityTypeMapping TypeName="LoanDBModel.VPendingList">
+        <MappingFragment StoreEntitySet="VPendingList">
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+          <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+          <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MID" ColumnName="MID" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VMemberLoans">
+      <EntityTypeMapping TypeName="LoanDBModel.VMemberLoan">
+        <MappingFragment StoreEntitySet="VMemberLoan">
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+          <ScalarProperty Name="TRInvestment_TID" ColumnName="TRInvestment_TID" />
+          <ScalarProperty Name="RetentionProperty_JID" ColumnName="RetentionProperty_JID" />
+          <ScalarProperty Name="OtherBank_OID" ColumnName="OtherBank_OID" />
+          <ScalarProperty Name="Guarantor_GID" ColumnName="Guarantor_GID" />
+          <ScalarProperty Name="CurrentSaving_CUID" ColumnName="CurrentSaving_CUID" />
+          <ScalarProperty Name="BiMudaraba_BIID" ColumnName="BiMudaraba_BIID" />
+          <ScalarProperty Name="FieldNo" ColumnName="FieldNo" />
+          <ScalarProperty Name="SoftwareLoanNo" ColumnName="SoftwareLoanNo" />
+          <ScalarProperty Name="LoanInstallment" ColumnName="LoanInstallment" />
+          <ScalarProperty Name="LoanInstallmentAmount" ColumnName="LoanInstallmentAmount" />
+          <ScalarProperty Name="LoanProvideDate" ColumnName="LoanProvideDate" />
+          <ScalarProperty Name="LoanRecoveryDays" ColumnName="LoanRecoveryDays" />
+          <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+          <ScalarProperty Name="AmountInAccount" ColumnName="AmountInAccount" />
+          <ScalarProperty Name="MAccountNo" ColumnName="MAccountNo" />
+          <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
+          <ScalarProperty Name="MonthlyProfit" ColumnName="MonthlyProfit" />
+          <ScalarProperty Name="MonthlySaleAmount" ColumnName="MonthlySaleAmount" />
+          <ScalarProperty Name="DailyIncome" ColumnName="DailyIncome" />
+          <ScalarProperty Name="DailyProfit" ColumnName="DailyProfit" />
+          <ScalarProperty Name="DailySaleAmount" ColumnName="DailySaleAmount" />
+          <ScalarProperty Name="MonthlyAvarageIncome" ColumnName="MonthlyAvarageIncome" />
+          <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="LoanNo" ColumnName="LoanNo" />
+          <ScalarProperty Name="MLFile" ColumnName="MLFile" />
+          <ScalarProperty Name="OwnAmount" ColumnName="OwnAmount" />
+          <ScalarProperty Name="NameRent" ColumnName="NameRent" />
+          <ScalarProperty Name="AmountRent" ColumnName="AmountRent" />
+          <ScalarProperty Name="DateRent" ColumnName="DateRent" />
+          <ScalarProperty Name="DateOwn" ColumnName="DateOwn" />
+          <ScalarProperty Name="MotiveofLoan" ColumnName="MotiveofLoan" />
+          <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+          <ScalarProperty Name="BusinessNature" ColumnName="BusinessNature" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+          <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="PS" ColumnName="PS" />
+          <ScalarProperty Name="PO" ColumnName="PO" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+          <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+          <ScalarProperty Name="InvestmentNo" ColumnName="InvestmentNo" />
+          <ScalarProperty Name="ShareAmount" ColumnName="ShareAmount" />
+          <ScalarProperty Name="ShareNumber" ColumnName="ShareNumber" />
+          <ScalarProperty Name="MemberNo" ColumnName="MemberNo" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ApprovalNo" ColumnName="ApprovalNo" />
+          <ScalarProperty Name="MID" ColumnName="MID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VForwardPendingLists">
+      <EntityTypeMapping TypeName="LoanDBModel.VForwardPendingList">
+        <MappingFragment StoreEntitySet="VForwardPendingList">
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+          <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+          <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MID" ColumnName="MID" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

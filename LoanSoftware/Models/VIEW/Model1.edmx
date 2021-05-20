@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LoanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VBranchLimit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VBranchLimit">
+          <Key>
+            <PropertyRef Name="BrLimit" />
+            <PropertyRef Name="LimitID" />
+          </Key>
+          <Property Name="BranchName" Type="nvarchar(max)" />
+          <Property Name="BranchCode" Type="nvarchar(max)" />
+          <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LimitID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VForwardPendingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VForwardPendingList">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="LimitID" />
+            <PropertyRef Name="BrLimit" />
+          </Key>
+          <Property Name="BranchCode" Type="nvarchar(max)" />
+          <Property Name="MID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="AplicantName" Type="nvarchar(max)" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FormID" Type="int" Nullable="false" />
+          <Property Name="LimitID" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="nvarchar(max)" />
+          <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VMemberLoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VMemberLoan">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="MID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ApprovalNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="MemberNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShareNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShareAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvestmentNo" Type="nvarchar(max)" />
+          <Property Name="AplicantName" Type="nvarchar(max)" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="FatherName" Type="nvarchar(max)" />
+          <Property Name="MotherName" Type="nvarchar(max)" />
+          <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Village" Type="nvarchar" MaxLength="50" />
+          <Property Name="PO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PS" Type="nvarchar" MaxLength="50" />
+          <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="PresentAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessNature" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotiveofLoan" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateOwn" Type="datetime" />
+          <Property Name="DateRent" Type="datetime" />
+          <Property Name="AmountRent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NameRent" Type="nvarchar" MaxLength="100" />
+          <Property Name="OwnAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MLFile" Type="nvarchar(max)" />
+          <Property Name="LoanNo" Type="nvarchar(max)" />
+          <Property Name="BranchCode" Type="nvarchar(max)" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LastDate" Type="datetime" />
+          <Property Name="MonthlyAvarageIncome" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DailySaleAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DailyProfit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DailyIncome" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlySaleAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyProfit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyIncome" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MAccountNo" Type="nvarchar(max)" />
+          <Property Name="AmountInAccount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LoanRecoveryDays" Type="int" />
+          <Property Name="LoanProvideDate" Type="datetime" />
+          <Property Name="LoanInstallmentAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LoanInstallment" Type="nvarchar(max)" />
+          <Property Name="SoftwareLoanNo" Type="nvarchar(max)" />
+          <Property Name="FieldNo" Type="nvarchar(max)" />
+          <Property Name="BiMudaraba_BIID" Type="int" />
+          <Property Name="CurrentSaving_CUID" Type="int" />
+          <Property Name="Guarantor_GID" Type="int" />
+          <Property Name="OtherBank_OID" Type="int" />
+          <Property Name="RetentionProperty_JID" Type="int" />
+          <Property Name="TRInvestment_TID" Type="int" />
+          <Property Name="FormID" Type="int" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VPendingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VPendingList">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="LimitID" />
+            <PropertyRef Name="BrLimit" />
+          </Key>
+          <Property Name="BranchCode" Type="nvarchar(max)" />
+          <Property Name="MID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="AplicantName" Type="nvarchar(max)" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FormID" Type="int" Nullable="false" />
+          <Property Name="LimitID" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="nvarchar(max)" />
+          <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="LoanDBModelStoreContainer">
+          <EntitySet Name="VBranchLimit" EntityType="Self.VBranchLimit" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VBranchLimit].[BranchName] AS [BranchName], 
+    [VBranchLimit].[BranchCode] AS [BranchCode], 
+    [VBranchLimit].[BrLimit] AS [BrLimit], 
+    [VBranchLimit].[LimitID] AS [LimitID]
+    FROM [dbo].[VBranchLimit] AS [VBranchLimit]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VForwardPendingList" EntityType="Self.VForwardPendingList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VForwardPendingList].[BranchCode] AS [BranchCode], 
+    [VForwardPendingList].[MID] AS [MID], 
+    [VForwardPendingList].[Date] AS [Date], 
+    [VForwardPendingList].[AplicantName] AS [AplicantName], 
+    [VForwardPendingList].[DateofBirth] AS [DateofBirth], 
+    [VForwardPendingList].[NID] AS [NID], 
+    [VForwardPendingList].[District] AS [District], 
+    [VForwardPendingList].[MobileNumber] AS [MobileNumber], 
+    [VForwardPendingList].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VForwardPendingList].[FormID] AS [FormID], 
+    [VForwardPendingList].[LimitID] AS [LimitID], 
+    [VForwardPendingList].[Expr1] AS [Expr1], 
+    [VForwardPendingList].[BrLimit] AS [BrLimit], 
+    [VForwardPendingList].[BranchName] AS [BranchName]
+    FROM [dbo].[VForwardPendingList] AS [VForwardPendingList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VMemberLoan" EntityType="Self.VMemberLoan" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VMemberLoan].[MID] AS [MID], 
+    [VMemberLoan].[ApprovalNo] AS [ApprovalNo], 
+    [VMemberLoan].[Date] AS [Date], 
+    [VMemberLoan].[MemberNo] AS [MemberNo], 
+    [VMemberLoan].[ShareNumber] AS [ShareNumber], 
+    [VMemberLoan].[ShareAmount] AS [ShareAmount], 
+    [VMemberLoan].[InvestmentNo] AS [InvestmentNo], 
+    [VMemberLoan].[AplicantName] AS [AplicantName], 
+    [VMemberLoan].[DateofBirth] AS [DateofBirth], 
+    [VMemberLoan].[FatherName] AS [FatherName], 
+    [VMemberLoan].[MotherName] AS [MotherName], 
+    [VMemberLoan].[NID] AS [NID], 
+    [VMemberLoan].[Village] AS [Village], 
+    [VMemberLoan].[PO] AS [PO], 
+    [VMemberLoan].[PS] AS [PS], 
+    [VMemberLoan].[District] AS [District], 
+    [VMemberLoan].[PresentAddress] AS [PresentAddress], 
+    [VMemberLoan].[BusinessAddress] AS [BusinessAddress], 
+    [VMemberLoan].[PhoneNumber] AS [PhoneNumber], 
+    [VMemberLoan].[MobileNumber] AS [MobileNumber], 
+    [VMemberLoan].[Email] AS [Email], 
+    [VMemberLoan].[BusinessNature] AS [BusinessNature], 
+    [VMemberLoan].[BusinessType] AS [BusinessType], 
+    [VMemberLoan].[MotiveofLoan] AS [MotiveofLoan], 
+    [VMemberLoan].[DateOwn] AS [DateOwn], 
+    [VMemberLoan].[DateRent] AS [DateRent], 
+    [VMemberLoan].[AmountRent] AS [AmountRent], 
+    [VMemberLoan].[NameRent] AS [NameRent], 
+    [VMemberLoan].[OwnAmount] AS [OwnAmount], 
+    [VMemberLoan].[MLFile] AS [MLFile], 
+    [VMemberLoan].[LoanNo] AS [LoanNo], 
+    [VMemberLoan].[BranchCode] AS [BranchCode], 
+    [VMemberLoan].[Amount] AS [Amount], 
+    [VMemberLoan].[LastDate] AS [LastDate], 
+    [VMemberLoan].[MonthlyAvarageIncome] AS [MonthlyAvarageIncome], 
+    [VMemberLoan].[DailySaleAmount] AS [DailySaleAmount], 
+    [VMemberLoan].[DailyProfit] AS [DailyProfit], 
+    [VMemberLoan].[DailyIncome] AS [DailyIncome], 
+    [VMemberLoan].[MonthlySaleAmount] AS [MonthlySaleAmount], 
+    [VMemberLoan].[MonthlyProfit] AS [MonthlyProfit], 
+    [VMemberLoan].[MonthlyIncome] AS [MonthlyIncome], 
+    [VMemberLoan].[MAccountNo] AS [MAccountNo], 
+    [VMemberLoan].[AmountInAccount] AS [AmountInAccount], 
+    [VMemberLoan].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VMemberLoan].[LoanRecoveryDays] AS [LoanRecoveryDays], 
+    [VMemberLoan].[LoanProvideDate] AS [LoanProvideDate], 
+    [VMemberLoan].[LoanInstallmentAmount] AS [LoanInstallmentAmount], 
+    [VMemberLoan].[LoanInstallment] AS [LoanInstallment], 
+    [VMemberLoan].[SoftwareLoanNo] AS [SoftwareLoanNo], 
+    [VMemberLoan].[FieldNo] AS [FieldNo], 
+    [VMemberLoan].[BiMudaraba_BIID] AS [BiMudaraba_BIID], 
+    [VMemberLoan].[CurrentSaving_CUID] AS [CurrentSaving_CUID], 
+    [VMemberLoan].[Guarantor_GID] AS [Guarantor_GID], 
+    [VMemberLoan].[OtherBank_OID] AS [OtherBank_OID], 
+    [VMemberLoan].[RetentionProperty_JID] AS [RetentionProperty_JID], 
+    [VMemberLoan].[TRInvestment_TID] AS [TRInvestment_TID], 
+    [VMemberLoan].[FormID] AS [FormID], 
+    [VMemberLoan].[BranchName] AS [BranchName]
+    FROM [dbo].[VMemberLoan] AS [VMemberLoan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VPendingList" EntityType="Self.VPendingList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VPendingList].[BranchCode] AS [BranchCode], 
+    [VPendingList].[MID] AS [MID], 
+    [VPendingList].[Date] AS [Date], 
+    [VPendingList].[AplicantName] AS [AplicantName], 
+    [VPendingList].[DateofBirth] AS [DateofBirth], 
+    [VPendingList].[NID] AS [NID], 
+    [VPendingList].[District] AS [District], 
+    [VPendingList].[MobileNumber] AS [MobileNumber], 
+    [VPendingList].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VPendingList].[FormID] AS [FormID], 
+    [VPendingList].[LimitID] AS [LimitID], 
+    [VPendingList].[Expr1] AS [Expr1], 
+    [VPendingList].[BrLimit] AS [BrLimit], 
+    [VPendingList].[BranchName] AS [BranchName]
+    FROM [dbo].[VPendingList] AS [VPendingList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LoanDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VBranchLimits" EntityType="LoanDBModel.VBranchLimit" />
+          <EntitySet Name="VPendingLists" EntityType="LoanDBModel.VPendingList" />
+          <EntitySet Name="VMemberLoans" EntityType="LoanDBModel.VMemberLoan" />
+          <EntitySet Name="VForwardPendingLists" EntityType="LoanDBModel.VForwardPendingList" />
+        </EntityContainer>
+        <EntityType Name="VBranchLimit">
+          <Key>
+            <PropertyRef Name="BrLimit" />
+            <PropertyRef Name="LimitID" />
+          </Key>
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LimitID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VPendingList">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="LimitID" />
+            <PropertyRef Name="BrLimit" />
+          </Key>
+          <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="LimitID" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VMemberLoan">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApprovalNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="MemberNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShareNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShareAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvestmentNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="FatherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Village" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PresentAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessNature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotiveofLoan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateOwn" Type="DateTime" Precision="3" />
+          <Property Name="DateRent" Type="DateTime" Precision="3" />
+          <Property Name="AmountRent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NameRent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OwnAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MLFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoanNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LastDate" Type="DateTime" Precision="3" />
+          <Property Name="MonthlyAvarageIncome" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DailySaleAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DailyProfit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DailyIncome" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlySaleAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyProfit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyIncome" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MAccountNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AmountInAccount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoanRecoveryDays" Type="Int32" />
+          <Property Name="LoanProvideDate" Type="DateTime" Precision="3" />
+          <Property Name="LoanInstallmentAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoanInstallment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoftwareLoanNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FieldNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BiMudaraba_BIID" Type="Int32" />
+          <Property Name="CurrentSaving_CUID" Type="Int32" />
+          <Property Name="Guarantor_GID" Type="Int32" />
+          <Property Name="OtherBank_OID" Type="Int32" />
+          <Property Name="RetentionProperty_JID" Type="Int32" />
+          <Property Name="TRInvestment_TID" Type="Int32" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VForwardPendingList">
+          <Key>
+            <PropertyRef Name="MID" />
+            <PropertyRef Name="NID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="LimitID" />
+            <PropertyRef Name="BrLimit" />
+          </Key>
+          <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="LimitID" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoanDBModelStoreContainer" CdmEntityContainer="LoanDBEntities">
+          <EntitySetMapping Name="VBranchLimits">
+            <EntityTypeMapping TypeName="LoanDBModel.VBranchLimit">
+              <MappingFragment StoreEntitySet="VBranchLimit">
+                <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+                <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VPendingLists">
+            <EntityTypeMapping TypeName="LoanDBModel.VPendingList">
+              <MappingFragment StoreEntitySet="VPendingList">
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VMemberLoans">
+            <EntityTypeMapping TypeName="LoanDBModel.VMemberLoan">
+              <MappingFragment StoreEntitySet="VMemberLoan">
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="TRInvestment_TID" ColumnName="TRInvestment_TID" />
+                <ScalarProperty Name="RetentionProperty_JID" ColumnName="RetentionProperty_JID" />
+                <ScalarProperty Name="OtherBank_OID" ColumnName="OtherBank_OID" />
+                <ScalarProperty Name="Guarantor_GID" ColumnName="Guarantor_GID" />
+                <ScalarProperty Name="CurrentSaving_CUID" ColumnName="CurrentSaving_CUID" />
+                <ScalarProperty Name="BiMudaraba_BIID" ColumnName="BiMudaraba_BIID" />
+                <ScalarProperty Name="FieldNo" ColumnName="FieldNo" />
+                <ScalarProperty Name="SoftwareLoanNo" ColumnName="SoftwareLoanNo" />
+                <ScalarProperty Name="LoanInstallment" ColumnName="LoanInstallment" />
+                <ScalarProperty Name="LoanInstallmentAmount" ColumnName="LoanInstallmentAmount" />
+                <ScalarProperty Name="LoanProvideDate" ColumnName="LoanProvideDate" />
+                <ScalarProperty Name="LoanRecoveryDays" ColumnName="LoanRecoveryDays" />
+                <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+                <ScalarProperty Name="AmountInAccount" ColumnName="AmountInAccount" />
+                <ScalarProperty Name="MAccountNo" ColumnName="MAccountNo" />
+                <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
+                <ScalarProperty Name="MonthlyProfit" ColumnName="MonthlyProfit" />
+                <ScalarProperty Name="MonthlySaleAmount" ColumnName="MonthlySaleAmount" />
+                <ScalarProperty Name="DailyIncome" ColumnName="DailyIncome" />
+                <ScalarProperty Name="DailyProfit" ColumnName="DailyProfit" />
+                <ScalarProperty Name="DailySaleAmount" ColumnName="DailySaleAmount" />
+                <ScalarProperty Name="MonthlyAvarageIncome" ColumnName="MonthlyAvarageIncome" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="LoanNo" ColumnName="LoanNo" />
+                <ScalarProperty Name="MLFile" ColumnName="MLFile" />
+                <ScalarProperty Name="OwnAmount" ColumnName="OwnAmount" />
+                <ScalarProperty Name="NameRent" ColumnName="NameRent" />
+                <ScalarProperty Name="AmountRent" ColumnName="AmountRent" />
+                <ScalarProperty Name="DateRent" ColumnName="DateRent" />
+                <ScalarProperty Name="DateOwn" ColumnName="DateOwn" />
+                <ScalarProperty Name="MotiveofLoan" ColumnName="MotiveofLoan" />
+                <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+                <ScalarProperty Name="BusinessNature" ColumnName="BusinessNature" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+                <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="PS" ColumnName="PS" />
+                <ScalarProperty Name="PO" ColumnName="PO" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+                <ScalarProperty Name="InvestmentNo" ColumnName="InvestmentNo" />
+                <ScalarProperty Name="ShareAmount" ColumnName="ShareAmount" />
+                <ScalarProperty Name="ShareNumber" ColumnName="ShareNumber" />
+                <ScalarProperty Name="MemberNo" ColumnName="MemberNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ApprovalNo" ColumnName="ApprovalNo" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VForwardPendingLists">
+            <EntityTypeMapping TypeName="LoanDBModel.VForwardPendingList">
+              <MappingFragment StoreEntitySet="VForwardPendingList">
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BrLimit" ColumnName="BrLimit" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="LimitID" ColumnName="LimitID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="LoanAmountTotal" ColumnName="LoanAmountTotal" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="AplicantName" ColumnName="AplicantName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

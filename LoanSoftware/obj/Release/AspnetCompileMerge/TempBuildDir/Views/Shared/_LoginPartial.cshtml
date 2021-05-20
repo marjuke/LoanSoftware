@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+
+
+
+
+
+
+@if (Request.IsAuthenticated)
+{
+
+
+
+
+
+
+    <li class="nav-item dropdown">
+
+        <a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false">  <i class="fa fa-user-circle"></i> @User.Identity.Name <span class="caret" style="margin:0px"></span></a>
+        
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            
+            <div class="dropdown-divider"></div>
+            <a href="/Manage" class="dropdown-item">
+                <i class="fas fa-user mr-2"></i> Profile
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="/Manage/ChangePassword" class="dropdown-item">
+                <i class="fas fa-key mr-2"></i> Change Password
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">
+                <i class="fas fa-sign-out-alt mr-2"></i> Sign Out
+            </a>
+        </div>
+        
+        @*<ul class="dropdown-menu" role="menu">
+            <li>
+
+
+                <a href="/Manage" title="Manage"> <i class="fa fa-user-circle" aria-hidden="true"></i> Profile  </a>
+
+
+            </li>
+            <li><a href="/Manage/ChangePassword" class="roboto"><i class="fa fa-edit"></i> Change Password</a></li>
+            <li class="divider"></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="roboto"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a></li>
+
+
+        </ul>*@
+    </li>
+
+
+}
+else
+{
+    <li>
+        <a class="roboto" href="@Url.Content("~/account/login")"><i class="fa fa-user-circle" aria-hidden="true"></i>    Log in</a>
+    </li>
+
+    <li>
+        <a class="roboto" href="@Url.Content("~/account/register")"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Signup</a>
+    </li>
+
+
+
+
+
+
+}
+
+<div style="display:none">
+
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+
+    }
+</div>
+
+
+
+
+
+
+
+<script>
+    //$(document).ready(function () {
+    //    $('[data-toggle="tooltip"]').tooltip();
+    //});
+</script>

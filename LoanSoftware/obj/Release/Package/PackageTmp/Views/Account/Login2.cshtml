@@ -1,0 +1,364 @@
+﻿@*@using LoanSoftware.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Sign In";
+}
+
+
+
+
+<style>
+    .text-muted {
+        color: #869ac0 !important;
+    }
+
+
+    /*h2, .h2 {
+        margin-top: 15%;
+        margin-bottom: 10px;
+        margin-left: 50%;
+    }*/
+
+    .center2 {
+        margin-bottom: 10px;
+        margin-left: 42%;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-12 card">
+        <h2 class="text-center"><b>@ViewBag.Title</b></h2>
+        <section id="loginForm">
+       @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+        <h5 class="text-muted text-center">For your protection, please verify your identity.</h5>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Log in" class="btn btn-default" />
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Register as a new user", "Register")
+        </p>
+
+
+         Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>
+        }
+        </section>
+    </div>
+    <div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+</div>*@
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+
+
+@using LoanSoftware.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Sign In";
+
+
+    //var val = "right:0;";
+}
+
+
+
+<div >
+
+
+    <div style="text-align:center;">
+
+        <a href="@Url.Content("~/")">
+            <img src="~/Content/img/erp_logo/loanLogotrans.png" class="img-responsive" style="display:inherit" width="350" />
+        </a>
+    </div>
+    <div class="card card-container">
+        <br />
+        <br />
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        @*<img id="profile-img" class="profile-img-card" src="~/Content/img/user5.png" />*@
+        <img id="profile-img" class="profile-img-card" src="~/Content/img/logo/logo_new_100.jpg" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <h2 class="text-center"><b>@ViewBag.Title</b></h2>
+        <h5 class="text-muted text-center">For your protection, please verify your identity.</h5>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="email" id="Email" name="Email" class="form-control" placeholder="Email address" required autofocus>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password" required>
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+            <div id="remember" class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary active btn-block btn-signin" type="submit"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Sign in</button>
+
+            <a href="#" class="forgot-password">
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </a>
+        }
+    </div><!-- /card-container -->
+</div><!-- /container -->
+
+@*<div class="panel panel-default" style=" float: right;font-size: 18px;padding-top: 0;text-align: center;position: fixed;margin: 0 auto;bottom:0;width: 100%;">
+
+    <div class="panel-body" style="padding: 5px;padding-bottom: 0;">
+        <footer class="">
+            <div class="col-md-12">
+
+                <div>
+                    <span class="bold"><img src="~/Content/img/erp_logo/loanLogo.png" style="width: 120px;padding-bottom: 2px;" />     </span>     &nbsp;   | &nbsp;
+                    Developed  By &nbsp;
+                    <span id="nn" style="color:forestgreen">    </span>   <span style="color:forestgreen"><img src="~/Content/img/logo_sm.png" style="padding-bottom: 4px;width: 20px;"> DMCBL IT  &nbsp;|&nbsp;</span>
+                    All Rights Reserved   © 2021 - @DateTime.UtcNow.Year | Version : 1.0.0
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>*@
+
+
+
+
+<style>
+    body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+    }
+
+    body {
+        background: rgba(247,247,247,1);
+        background: -moz-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(237,237,237,1) 47%, rgba(230,230,230,1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(247,247,247,1)), color-stop(47%, rgba(237,237,237,1)), color-stop(100%, rgba(230,230,230,1)));
+        background: -webkit-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(237,237,237,1) 47%, rgba(230,230,230,1) 100%);
+        background: -o-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(237,237,237,1) 47%, rgba(230,230,230,1) 100%);
+        /*background: -ms-linear-gradient(left, rgba(247,247,247,1) 0%, rgba(237,237,237,1) 47%, rgba(230,230,230,1) 100%);*/
+        background: linear-gradient(to right, rgba(247,247,247,1) 0%, rgba(237,237,237,1) 47%, rgba(230,230,230,1) 100%);
+        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e6e6e6', GradientType=1 );*/
+    }
+
+    /*
+        .watermark {
+
+            background: url(/Content/img/erp_logo/logo_trans.png);
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: inherit;
+        }
+
+    */
+    .container {
+        padding-right: 0%;
+    }
+
+    .card-container.card {
+        max-width: 400px;
+        padding: 2% 50px;
+    }
+
+    .btn {
+        font-weight: 700;
+        height: 36px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+
+    .footer2 {
+        display: none;
+    }
+
+    /*
+        * Card component
+        */
+    .card {
+        background-color: white;
+        /* just in case there no content*/
+        padding: 20px 25px 30px;
+        margin: 0 auto 25px;
+        margin-top: 50px;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        /*-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);*/
+        /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);*/
+    }
+
+    .profile-img-card {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 10px;
+        display: block;
+        -moz-border-radius: 0%;
+        -webkit-border-radius: 0%;
+        border-radius: 0%;
+    }
+
+    /*
+        * Form styles
+        */
+    .profile-name-card {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0 0;
+        min-height: 1em;
+    }
+
+    .reauth-email {
+        display: block;
+        color: #404040;
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 14px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .form-control {
+        background-color: #f5f5f5 !important;
+    }
+
+    .form-signin #inputEmail,
+    .form-signin #inputPassword {
+        direction: ltr;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .form-signin input[type=email],
+    .form-signin input[type=password],
+    .form-signin input[type=text],
+    .form-signin button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        z-index: 1;
+        position: relative;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .form-signin .form-control:focus {
+        border-color: rgb(104, 145, 162);
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    }
+
+    .btn.btn-signin {
+        /*background-color: #4d90fe; */
+        /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+        padding: 0px;
+        font-weight: 700;
+        font-size: 14px;
+        height: 36px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        border: none;
+        -o-transition: all 0.218s;
+        -moz-transition: all 0.218s;
+        -webkit-transition: all 0.218s;
+        transition: all 0.218s;
+    }
+
+        .btn.btn-signin:hover,
+        .btn.btn-signin:active,
+        .btn.btn-signin:focus {
+            background-color: rgb(12, 97, 33);
+        }
+
+    .forgot-password {
+        color: rgb(104, 145, 162);
+    }
+
+        .forgot-password:hover,
+        .forgot-password:active,
+        .forgot-password:focus {
+            color: rgb(12, 97, 33);
+        }
+
+
+    .sidebar, .navbar, #registerLink, #top-bar {
+        display: none;
+    }
+
+    .main-panel {
+        width: 100%;
+    }
+
+    .is-empty {
+        margin: 0;
+    }
+</style>
+
+
+
+<script>
+    //$(".body").addClass("watermark");
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

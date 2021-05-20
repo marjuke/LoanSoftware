@@ -1,0 +1,374 @@
+﻿@model IEnumerable<LoanSoftware.Models.VIEW.VMemberLoan>
+
+@{
+    ViewBag.Title = "List";
+
+}
+
+
+
+<link href="~/Content/LoanCSS.css" rel="stylesheet" />
+<div id="bfont" class="" card card-primary card-outline card-outline-tabs">
+    <div class="card-body">
+        <table class="table table-bordered table-striped" id="tbl">
+            <thead style="font-family: 'Calibri'">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApprovalNo)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShareNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LoanNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BranchCode)
+                    </th>
+                    <th>
+                        Loan Amount
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InvestmentNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AplicantName)
+                    </th>
+
+                    <th>
+                        Field No
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.RecentCalculationNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BranchCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InvestmentNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AplicantName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateofBirth)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FatherName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MotherName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Village)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PO)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.District)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PresentAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BusinessAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BusinessNature)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BusinessType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MotiveofLoan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOwn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateRent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountRent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameRent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OwnAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MonthlyAvarageIncome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MLFile)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DailySaleAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DailyProfit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DailyIncome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MonthlySaleAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MonthlyProfit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MonthlyIncome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MAccountNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountInAccount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanAmountTotal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanInstallmentAmount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanInstallment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanRecoveryDays)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanProvideDate)
+                        </th>*@
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApprovalNo)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShareNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BranchCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanAmountTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InvestmentNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AplicantName)
+                    </td>
+                    <td style="font-family:'Times New Roman'">
+                        @Html.DisplayFor(modelItem => item.FieldNo)
+                    </td>
+
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ShareAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecentCalculationNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BranchCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InvestmentNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AplicantName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateofBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FatherName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MotherName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Village)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PS)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.District)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PresentAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessNature)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MotiveofLoan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOwn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateRent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AmountRent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameRent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OwnAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonthlyAvarageIncome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MLFile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DailySaleAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DailyProfit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DailyIncome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonthlySaleAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonthlyProfit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonthlyIncome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MAccountNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AmountInAccount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanAmountTotal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanInstallmentAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanInstallment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanRecoveryDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoanProvideDate)
+                        </td>*@
+                    <td style="font-family:'Times New Roman'">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.FormID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.FormID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.FormID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script>
+        $("#tbl").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": false,
+        });
+    </script>
+
+}

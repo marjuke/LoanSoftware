@@ -1,0 +1,3200 @@
+﻿
+@model LoanSoftware.Models.LoanModel.ViewModel.MemberLoanInfoVM
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Invoice Print</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Theme/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Theme/dist/css/adminlte.min.css">
+</head>
+
+<link href="~/Content/LoanCSS.css" rel="stylesheet" />
+<style>
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        margin-top: -8px !important;
+    }
+
+
+    input {
+        outline: 0;
+        border-width: 0 0 2px;
+        border-bottom: 2px dashed #555;
+    }
+
+    #bfont {
+        font-size: 16px;
+    }
+
+    .form-control:disabled, .form-control[readonly] {
+        background-color: #ffffff;
+    }
+
+    /*@@media print {
+        .print {
+            page-break-after: always;
+        }
+    }*/
+
+    @@media print {
+       /*.print {
+        page-break-after: avoid;
+      }*/
+       
+    }
+</style>
+
+<div class="card-body" id="bfont">
+    <div class="tab-content" id="content">
+        <div class="print">
+            <div class="container-fluid card card-primary">
+
+
+                <section class="content">
+                    <div class="container-fluid card">
+
+                        <div class="row mb-1">
+
+                            <div style="padding-left:20px;">
+                                <img src="~/Content/img/DmcblNew.jpeg" alt="No Image" title='' width="110" height="120" />
+                            </div>
+
+                            <div class="col-sm-10">
+                                <h1 class="text-center" style="color:darkgreen;">দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিঃ</h1>
+                                <h6 class="text-center" style="color:red;">ইসলামী শরীয়াহ্ মোতাবেক পরিচালিত</h6>
+                                <h6 class="text-center" style="color:darkgreen;">বাই- মুরাবাহা ক্ষুদ্র/ সাধারণ /চলতি মূলধন ঋণ /বিনিয়োগ আবেদন ফরম</h6>
+
+                            </div>
+                        </div>
+                        <hr style="border:2px solid green;" />
+                    </div><!-- /.container-fluid -->
+                    <div class="container-fluid card card-primary">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-4">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.ApprovalNo, "অনুমোদন নং", htmlAttributes: new { @class = "col-form-label col-md-4" })
+                                                @Html.EditorFor(model => model.ApprovalNo, new { htmlAttributes = new { @class = "col-md-6", @readonly = "readonly" } })
+
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.Date, "তারিখ", htmlAttributes: new { @class = "col-form-label col-md-4" })
+                                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "col-md-6", @readonly = "readonly" } })
+                                                <div class="form-group  col-md-8 row">
+                                                    <label style="color:red;font-size:small">প্রধান কার্যালয় কর্তৃক পূরণীয় </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="form-group">
+                                    @*@Html.LabelFor(model => model.BrCode, "ব্যবস্থাপক", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    <div class="col-md-12 row" style="font-family:'Times New Roman'">
+                                        <p>ব্যবস্থাপক <br />দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিঃ</p>
+                                        @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "col-md-6", @readonly = "readonly" } })
+
+                                        <p class="col-md-2"> শাখা</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form id="form2">
+                                        <div class="card-body mb-1">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.MemberNo, "সদস্য পদ নম্বর", htmlAttributes: new { @class = "col-form-label col-md-4" })
+
+                                                <div class="col-md-8" style="padding-right:40px;">
+                                                    @Html.EditorFor(model => model.MemberNo, new { htmlAttributes = new { @class = "col-md-12" } })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="row col-md-8">
+                                                    @Html.LabelFor(model => model.ShareNumber, "শেয়ার সংখ্যা", htmlAttributes: new { @class = "col-md-6" })
+
+                                                    <div class="col-md-5" style="padding-left:15px;">
+                                                        @Html.EditorFor(model => model.ShareNumber, new { htmlAttributes = new { @class = "form-control " } })
+                                                        @Html.ValidationMessageFor(model => model.ShareNumber, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row col-md-4">
+                                                    @Html.LabelFor(model => model.ShareAmount, "টাকা", htmlAttributes: new { @class = "col-md-3" })
+
+                                                    <div class=" col-md-9">
+                                                        @Html.EditorFor(model => model.ShareAmount, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.ShareAmount, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row" style="font-family:'Times New Roman'">
+                                                @Html.LabelFor(model => model.FieldNo, "ফিল্ড নং", htmlAttributes: new { @class = "col-md-4" })
+
+                                                <div class="col-md-8" style="padding-right:40px;">
+                                                    @Html.EditorFor(model => model.FieldNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.FieldNo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.SoftwareLoanNo, "সফটওয়্যার হিসাব নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                                                <div class="col-md-8" style="padding-right:40px;">
+                                                    @*  @Html.EditorFor(model => model.LoanNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                    <input id="SoftwareLoanNo" class="ant-input form-control" type="text" value="@ViewBag.softwarenumber" readonly>
+                                                    @Html.ValidationMessageFor(model => model.SoftwareLoanNo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.LoanNo, "ঋণ / বিনিয়োগ হিসাব নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                                                <div class="col-md-8" style="padding-right:40px;">
+                                                    @*  @Html.EditorFor(model => model.LoanNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                    <input id="LoanNo" class="ant-input form-control" type="text" style="font-family:Calibri;" placeholder="XXX-XX-X" readonly>
+                                                    @Html.ValidationMessageFor(model => model.LoanNo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="font-family:'Times New Roman'">
+                                <!-- general form elements -->
+                                <div class="card card-primary">
+                                    <div class="card-body box-profile">
+                                        <div class="row">
+                                            <div id='img_contain' style="padding-left:22%;">
+                                                <img id="CustomerImage" src="~/Content/img/no.jpg" alt="No Image" title='' width="150" height="170" />
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <p><b> <u>বিষয় : সাধারণ ঋণ / বিনিয়োগ - নতুন / নবায়ন / পুনঃ নবায়ন ও বর্ধিতকরণের আবেদনপত্র।</u></b></p>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="input-group row col-md-6">
+                                @Html.LabelFor(model => model.AplicantName, "আবেদনকারীর পূর্ণ নামঃ", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.AplicantName, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.AplicantName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row col-md-6">
+                                @*@Html.LabelFor(model => model.DateofBirth, "জন্ম / নিবন্ধন তারিখঃ ", htmlAttributes: new { @class = "control-label col-md-4" })*@
+                                <label class="control-label col-md-4" style="text-align:right">জন্ম / নিবন্ধন তারিখঃ</label>
+                                <div class="col-md-8 ">
+                                    @Html.EditorFor(model => model.DateofBirth, new { htmlAttributes = new { @class = "col-md-12 date" } })
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="input-group row col-md-6">
+                                @Html.LabelFor(model => model.FatherName, "পিতা/স্বামীর নামঃ", htmlAttributes: new { @class = "control -label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="input-group row col-md-6">
+                                @Html.LabelFor(model => model.MotherName, "মাতার নামঃ", htmlAttributes: new { @class = "control-label col-md-4", @style = "text-align:right" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="input-group row col-md-6">
+                                @Html.LabelFor(model => model.NID, "জাতীয় পরিচয় পত্র নম্বরঃ ", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>স্থায়ী ঠিকানাঃ</b></p>
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.Village, "গ্রামঃ", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10" style="padding-right:22px;">
+                                        @Html.EditorFor(model => model.Village, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group row">
+
+                                    @Html.LabelFor(model => model.District, "জেলাঃ", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10" style="padding-right:22px;">
+                                        @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-5">
+                                <div class="form-group row">
+
+                                    @Html.LabelFor(model => model.PO, "ডাকঘরঃ", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align:right;" })
+                                    <div class="col-md-10" style="padding-left:20px;padding-right:40px;">
+                                        @Html.EditorFor(model => model.PO, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.PS, "থানা/উপজেলাঃ", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align:right;" })
+                                    <div class="col-md-10" style="padding-left:20px;padding-right:40px;">
+                                        @Html.EditorFor(model => model.PS, new { htmlAttributes = new { @class = "col-md-12" } })
+                                        @Html.ValidationMessageFor(model => model.PS, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>বর্তমান ঠিকানাঃ</b></p>
+                            </div>
+                            <div class="input-group col-md-10 row">
+                                <div class="col-md-12" style="padding-right:20px;padding-left:0px;">
+                                    @Html.EditorFor(model => model.PresentAddress, new { htmlAttributes = new { @class = "col-md-12" } })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>ব্যবসায়িক ঠিকানা</b></p>
+                            </div>
+                            <div class="input-group col-md-10 row">
+                                <div class="col-md-12" style="padding-right:20px;padding-left:0px;">
+                                    @Html.EditorFor(model => model.BusinessAddress, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.BusinessAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>দূরালাপনীঃ</b></p>
+                            </div>
+
+
+                            <div class="input-group col-md-3 row">
+                                @Html.LabelFor(model => model.PhoneNumber, "টেলিফোন নং", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="input-group col-md-4 row">
+                                @Html.LabelFor(model => model.MobileNumber, "মোবাইল নং", htmlAttributes: new { @class = "control-label col-md-3", @style = "text-align:right" })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="input-group col-md-3 row" style="font-family:'Times New Roman';padding-right:0px;">
+                                @Html.LabelFor(model => model.Email, "ই-মেইল", htmlAttributes: new { @class = "control-label col-md-4", @style = "text-align:right" })
+                                <div class="col-md-8" style="padding-right:0px;">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="form-group col-md-6 row">
+                                @Html.LabelFor(model => model.BusinessNature, "ব্যবসায়ের প্রকৃতিঃ", htmlAttributes: new { @class = "control -label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.BusinessNature, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.BusinessNature, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 row">
+                                @Html.LabelFor(model => model.BusinessType, "ব্যবসার ধরন", htmlAttributes: new { @class = "control -label col-md-4", @style = "text-align:right" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.BusinessType, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.BusinessType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>ঋণ/বিনিয়োগ গ্রহণের উদ্দেশ্যঃ</b></p>
+                            </div>
+                            <div class="input-group col-md-10 row">
+                                <div class="col-md-12" style="padding-right:20px;padding-left:0px;">
+                                    @Html.EditorFor(model => model.MotiveofLoan, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.MotiveofLoan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>দোকান/ ব্যবসা প্রতিষ্ঠান মালিকানা শর্ত </b></p>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input chb" type="checkbox" id="customCheckbox1" value="option1" checked>
+                                    <label for="customCheckbox1" class="custom-control-label col-form-label chb">ক. নিজস্ব</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input chb" type="checkbox" id="customCheckbox2" value="option2">
+                                    <label for="customCheckbox2" class="custom-control-label col-form-label ">খ. ভাড়াকৃত</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row" id="ownDiv">
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-3 row">
+                                <label class="col-form-label col-md-3" style="text-align:right;"><b>শুরুর তারিখঃ </b></label>
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.DateOwn, new { htmlAttributes = new { @class = "form-control date" } })
+                                    @Html.ValidationMessageFor(model => model.DateOwn, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 row">
+                                <label class="col-form-label col-md-4" style="text-align:right;"><b>শেষ তারিখঃ </b></label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.LastDate, new { htmlAttributes = new { @class = "form-control date" } })
+                                    @Html.ValidationMessageFor(model => model.LastDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-4 row">
+                                <label class="col-form-label col-md-5" style="text-align:right;"><b>মালিকের নামঃ </b></label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.NameRent, new { htmlAttributes = new { @class = "col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.NameRent, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="rentDiv" hidden>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-2 row">
+                                <label class="col-form-label col-md-5" style="text-align:right;"><b>শুরু তারিখঃ </b></label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.DateRent, new { htmlAttributes = new { @class = "form-control date" } })
+                                    @Html.ValidationMessageFor(model => model.DateRent, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-2 row">
+                                <label class="col-form-label col-md-5" style="text-align:right;"><b>শেষ তারিখঃ </b></label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.LastDate2, new { htmlAttributes = new { @class = "form-control date" } })
+                                    @Html.ValidationMessageFor(model => model.LastDate2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 row">
+                                <label class="col-form-label col-md-4" style="text-align:right;"><b>মাসিক ভাড়াঃ </b></label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.AmountRent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.AmountRent, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 row">
+                                <label class="col-form-label col-md-5" style="text-align:right;"><b>মালিকের নামঃ </b></label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.NameRent2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NameRent2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>সাম্ভাব্য বিক্রয় ও আয় বিবরণীঃ</b></p>
+                            </div>
+                            <div class="col-md-10" style="padding-left:0px;padding-right:20px;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>বিবরণ</th>
+                                            <th>বিক্রয় (টাকা)</th>
+                                            <th> লাভের হার (%)</th>
+                                            <th> আয় (টাকা)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td>দৈনিক</td>
+                                            <td>
+                                                @Html.EditorFor(model => model.DailySaleAmount, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(model => model.DailyProfit, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(model => model.DailyIncome, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>মাসিক</td>
+                                            <td>
+                                                @Html.EditorFor(model => model.MonthlySaleAmount, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(model => model.MonthlyProfit, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(model => model.MonthlyIncome, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>ক. চলতি/সঞ্চয়ী হিসাব বিবরণীঃ</b></p>
+                            </div>
+                            <div class="col-md-4 row">
+                                @Html.LabelFor(model => model.MAccountNo, "হিসাব নং", htmlAttributes: new { @class = "col-form-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MAccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MAccountNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6 row">
+                                @Html.LabelFor(model => model.AmountInAccount, "বর্তমান স্থিতি", htmlAttributes: new { @class = "col-form-label col-md-2", @style = "text-align:right;" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.AmountInAccount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AmountInAccount, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    <p><b>টাকা ।</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p><b>খ. বিশেষ সঞ্চয় হিসাব বিবরণীঃ</b></p>
+                            </div>
+                            <div class="col-md-10" style="padding-left:1px;padding-right:20px;">
+                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="CurrentSaving">
+                                    <thead>
+                                        <tr>
+                                            <th>বিবরণ</th>
+                                            <th>হিসাব নং</th>
+                                            <th>হিশাব খোলার তারিখ</th>
+                                            <th>কিস্তির পরিমাণ (টাকা) </th>
+                                            <th>বর্তমান স্থিতি (টাকা)</th>
+                                            <th>নিয়মিত / অনিয়মিত</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><b>পূর্বে গৃহীত বাই-মুরাবাহা ক্ষুদ্র/সাধারন/চলতি মূলধন ঋণ/বিনিয়োগ বিবরনঃ</b></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered" id="BiMudaraba">
+                                    <thead>
+                                        <tr>
+                                            <th>ঋণ/বিনিয়োগের ধরণ</th>
+                                            <th>ঋণ/বিনিয়োগের বিবরণ</th>
+                                            <th>বিনিয়োগের পরিমান</th>
+                                            <th>গ্রহণের তারিখ </th>
+                                            <th>মেয়াদোত্তীর্ণের তারিখ</th>
+                                            <th>বর্তমান স্থিতি</th>
+                                            <th>ব্যবসায় নিজস্ব মূলধন</th>
+                                            <th>মজুদ মালের পরিমান</th>
+                                            <th>দৈনিক / মাসিক গড় বিক্রয়</th>
+                                            <th>দৈনিক / মাসিক গড় আয়</th>
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <br />
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><b>ডিএমসিবি ব্যতীত অন্যান্য আর্থিক প্রতিষ্ঠানের দায়-দেনার বিবরনঃ</b></p>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="OtherBank">
+                                    <thead>
+                                        <tr>
+                                            <th>বিনিয়োগ প্রদানকারী প্রতিষ্ঠানের নাম</th>
+                                            <th>ঋণ/বিনিয়োগের পরিমান</th>
+                                            <th>গ্রহণের তারিখ </th>
+                                            <th>মেয়াদোত্তীর্ণের তারিখ</th>
+                                            <th>বর্তমান স্থিতি</th>
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><b>জামানত / বন্দকী সম্পত্তি বিবরণঃ</b></p>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="Retention">
+                                    <thead>
+                                        <tr>
+                                            <th>বিবরণ</th>
+                                            <th>মৌজার নাম </th>
+                                            <th>দলিল নং</th>
+                                            <th>খতিয়ান নং</th>
+                                            <th>দাগ নং</th>
+                                            <th>জমির পরিমান</th>
+                                            <th>সম্পত্তির সম্ভাব্য বাজার মূল্য</th>
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+                        <div class="row" style="padding-left:10px;">
+                            <p>
+                                আমার/ আমাদের বর্ণিত উপরোক্ত তথ্যাবলী ভিত্তিতে আপনার শাখা হতে বাই-মুরাবাহা <input id="LoanType" class="" style="border-bottom:none;text-align:center;" /> মূলধন ঋণ/ বিনিয়োগ প্রকল্পের আওতায় @Html.EditorFor(model => model.LoanAmountTotal, new { htmlAttributes = new { @class = "col-md-1" } }) টাকা <input id="LoanInstallmentType" class="" style="border-bottom:none;text-align:center;" /> @Html.EditorFor(model => model.LoanInstallmentAmount, new { htmlAttributes = new { @class = "col-md-1" } }) টাকা করে @Html.EditorFor(model => model.LoanInstallment, new { htmlAttributes = new { @class = "col-md-1" } }) টি কিস্তিতে @Html.EditorFor(model => model.LoanRecoveryDays, new { htmlAttributes = new { @class = "col-md-1" } }) দিনে/মাসে <input id="LoanSubType" class="" style="border-bottom:none;text-align:center;" /> ঋণ/ বিনিয়োগ @Html.EditorFor(model => model.LoanProvideDate, new { htmlAttributes = new { @class = "col-md-1" } }) তারিখের মধ্যে পাওয়ার জন্য আবেদন করছি ।
+
+                            </p>
+
+
+                        </div>
+
+                        <br />
+                        <br />
+                        <div>
+                            <div class="col-md-6">
+                                <input value="" class="col-md-5" />
+                                <br />
+                                <label class="col-md-5" style="text-align:center; color:#050397">ঋণ/ বিনিয়োগ আবেদনকারীর স্বাক্ষর</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                @*<div>
+                @Html.ActionLink("Back to List", "Index")
+                                </div>*@
+
+            </div>
+        </div>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <div class="tab-content">
+            <div class="container-fluid card card-primary">
+                <div class="row mb-1">
+
+
+                </div>
+
+                <section class="content">
+                    <div class="">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <h1 style="margin-top:100px;" class="text-center">সম্ভাব্য ক্রয় বিবরণী</h1>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </div>
+                    <div class="container-fluid card card-primary">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <div class="col-md-4 row">
+
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4 row">
+                                                    @Html.LabelFor(model => model.TRDate, "তারিখ", htmlAttributes: new { @class = " col-form-label col-md-2 date" })
+                                                    @Html.EditorFor(model => model.TRDate, new { htmlAttributes = new { @class = " col-md-10 date" } })
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <label class="col-form-label col-md-4">ক্রেতার নামঃ দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,</label>
+
+                                                <input id="TRBranchCode" value="" class="col-md-7" />
+                                                <label class="col-form-label col-md-1" style="text-align:right">শাখা</label>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <label class="col-form-label col-md-4">ক্রেতার পক্ষে বাই-মুরাবাহা ঋণ / বিনিয়োগ আবেদনকারীর নাম</label>
+                                                <input id="TRApplicantName" value="" class="  col-md-5" />
+                                                <label class="col-form-label col-md-1">সদস্য নম্বর</label>
+                                                <input id="TRMemberNo" value="" class="col-md-2" />
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <label class="col-form-label col-md-4">আবেদনকৃত বাই-মুরাবাহা ঋণ / বিনিয়োগের পরিমাণঃ</label>
+                                                <input id="TRTotalLoanAmount" value="" class="col-md-2" />
+
+                                                <label class="col-form-label col-md-1">টাকা(কথায়)</label>
+                                                <input id="TRTolatLoanAmountWords" value="" class="col-md-5" />
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="text-bold col-md-12" style="padding-left:10px;">
+
+                                @*<p id="jamindar">
+                                    ক্রেতার নামঃ দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড, <input id="TRBranch" value="" class="col-md-2"/> শাখা ক্রেতার পক্ষে ঋণ / বিনিয়োগ আবেদনকারীর নাম<input id="TRApplicantName" value="" class="col-md-1" />
+
+                                    সদস্য নম্বর <input id="TRMemberNo" value="" class="col-md-1"/> আবেদনকৃত বিনিয়োগের পরিমাণ <input id="TRTotalLoanAmount" value="" class="col-md-1"/>
+                                </p>*@
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered" style="width:100%" id="TRInvestment">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2" class="text-center">ক্রমিক নং</th>
+                                            <th rowspan="2" class="text-center">মালের বিবরণ</th>
+                                            <th rowspan="2" class="text-center">পরিমাণ</th>
+                                            <th colspan="3" class="text-center">টাকা</th>
+
+                                        </tr>
+                                        <tr>
+                                            <th> সম্ভাব্য ক্রয়মূল্য(টাকা)</th>
+                                            <th> সম্ভাব্য বিক্রয়মূল্য(টাকা)</th>
+                                            <th>সম্ভাব্য লাভ</th>
+                                        </tr>
+
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <br />
+                        <br />
+                        <div class="row card-body">
+                            <div class="col-md-3">
+                                <input value="" class="col-md-10" />
+                                <br />
+                                <label class="col-md-10" style="text-align:center; color:#050397">ঋণ/ বিনিয়োগ আবেদনকারীর স্বাক্ষর</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input value="" class="col-md-8" />
+                                <br />
+                                <label class="col-md-8" style="text-align:center; color:black">বিনিয়োগ কর্মকর্তার স্বাক্ষর</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input value="" class="col-md-8" />
+                                <br />
+                                <label class="col-md-8" style="text-align:center; color:black">২য় কর্মকর্তার স্বাক্ষর</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input value="" class="col-md-8" />
+                                <br />
+                                <label class="col-md-8" style="text-align:center; color:black">ব্যবস্তাপকের স্বাক্ষর</label>
+                            </div>
+
+                        </div>
+
+                        <br />
+                        <div class="row card-body">
+                            <label class="col-form-label col-md-2" style=" color:#050397; ">শরীয়াহ বিভাগের মন্তব্যঃ</label>
+                            <input value="" class="col-md-2" />
+
+                        </div>
+                        <div class="row card-body">
+
+                            <input value="" class="col-md-4" />
+
+                        </div>
+                        <div class="row card-body">
+
+                            <input value="" class="col-md-4" />
+
+                        </div>
+                        <br />
+                        <div class="row card-body">
+
+                            <div class="col-md-6">
+                                নোটঃ বাই-মুরাবাহা ঋণ/বিনিয়োগ প্রদানের পর মালামাল ক্রয়ের রশিদ / ভউচার শাখায় <br /> সংশ্লিষ্ট গ্রাহকের ঋণ / বিনিয়োগ ফাইলের সংরক্ষণ করতে হবে।
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="col-form-label col-md-2">স্বাক্ষরঃ</label>
+                                <input value="" class=" col-md-8" />
+                                <label class="col-form-label col-md-2">তারিখঃ</label>
+                                <input value="" class="col-md-8" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                </section>
+
+            </div>
+        </div>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <div class="" id="" aria-labelledby="custom-tabs-four-messages-tab">
+            <div class="container-fluid card card-primary">
+                <div class="row mb-1">
+
+
+                </div>
+
+                <section class="content">
+                    <div class="">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <h1 style="margin-top:100px;" class="text-center">জামিনদারবৃন্দের পরিচিতি ও অঙ্গীকারনামা</h1>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </div>
+                    <div class="container-fluid card card-primary">
+
+                        <div class="" style="padding-left:10px;">
+
+                            <p id="jamindar">
+                                আমি/আমরা <input id="jApplicantName" value="" class=" col-md-2" /> দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,<input id="jBranchNo" value="" class=" col-md-2" style="font-family:Calibri;" /> শাখা থেকে ঋণ / বিনিয়োগ প্রাপ্তির আবেদনকারী এবং এ মর্মে প্রত্যয়ন করছি যে,
+                                নিম্নবর্ণিত ব্যক্তিগন আমার
+                                গ্রহণকৃত <input id="jTotalLoanAmount" value="" class="col-md-2" />  টাকার ঋণ / বিনিয়োগের দায়বদ্ধতা সম্পর্কে অবহিত হয়ে আমার ঋণ / বিনিয়োগের জামিনদার হিসাবে তাদের নিজস্ব অঙ্গীকার প্রদান
+                                করছেন।
+                                <br />
+                                <br />
+                                <div>
+                                    <div class="col-md-6">
+                                        <input value="" class="col-md-5" />
+                                        <br />
+                                        <label class="col-md-5" style="text-align:center; color:#050397">ঋণ/ বিনিয়োগ আবেদনকারীর স্বাক্ষর</label>
+                                    </div>
+
+                                </div>
+                                <br />
+                                আমি/আমরা এ মর্মে প্রত্যয়ন করছি যে, জনাব  <input id="j2ApplicantName" value="" class=" col-md-2" /> আমার/আমাদের ব্যক্তিগতভাবে পরিচিত এবং তার সাধারণ ঋণ/
+                                বিনিয়োগের আওতায় গ্রহণকৃত মুনাফাসহ / আসল <input id="profitTotal" value="" class=" col-md-1" /> (কথায়<input id="profitTotalWords" value="" class=" col-md-2" />) টাকার জামিনদার হতে সম্মত
+                                আছি। আমি/আমরা এ মর্মে অঙ্গীকার করছি যে, গ্রাহক যদি গ্রহণকৃত ঋণ / বিনিয়োগের অর্থ নির্ধারিত মেয়াদের মধ্যে পরিশোধ না করে সেক্ষেত্রে আমি/আমরা উক্ত ঋণ/বিনিয়োগের অর্থ
+                                সম্পূর্নভাবে পরিশোধ করব। অন্যথায় দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড, <input id="j2BranchNo" value="" class=" col-md-2" style="font-family:Calibri;" /> শাখা আমি/আমাদের বিরুদ্ধে প্রয়োজনীয় আইনগত ব্যবস্থা
+                                গ্রহণ করে উক্ত ঋণ / বিনিয়োগের অনাদায়ী সমুদয় অর্থ (আসল, মুনাফা, পেনাল্টি চার্জ, মামলার খরচ, আইনগত প্রক্রিয়ার অন্যান্য আনুষঙ্গিক খরচ ও ক্ষতিপূরণ) আদায়ের ব্যবস্থা গ্রহণ
+                                করতে পারবে। জামিনদার হিসাবে ঋণ / বিনিয়োগের দায়বদ্ধতা সম্পর্কে সম্পূর্ন সচেতন ও অবহিত হয়ে স্বজ্ঞানে ও স্বেচ্ছায় প্রত্যাহার অযোগ্য এ জামিনদার পত্রে আমি/আমরা স্বাক্ষর করলাম।
+
+                            </p>
+
+                        </div>
+
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorName, "জামিনদারের নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorName, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorFather, "পিতার/স্বামীর নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorFather, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div class="">
+                                                    @Html.ValidationMessageFor(model => model.GuarantorFather, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PermanentVillage, "স্থায়ী ঠিকানা(গ্রামঃ)", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.PermanentVillage, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.PermanentVillage, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPS, "থানা/উপজেলাঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPS, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPS, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPresentAddress, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPresentAddress, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPresentAddress, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorNID, "জাতীয় পরিচয় পত্র নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorNID, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorNID, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorRelation, "ঋণ/বিনিয়োগ আবেদনকারীর সাথে সম্পর্কঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorRelation, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorRelation, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body mb-1">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDateofBirth, "জন্ম তারিখ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorDateofBirth, new { htmlAttributes = new { @class = "form-control col-md-8 date" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDateofBirth, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorMother, "মাতার নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorMother, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorMother, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPO, "ডাকঘর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPO, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPO, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPermanentDistrict, "জেলা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPermanentDistrict, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPermanentDistrict, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorBusinessAddress, "ব্যবসায়িক ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorBusinessAddress, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorBusinessAddress, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPhone, "টেলিফোন/মোবাইল", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPhone, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPhone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorOccupation, "জামিনদারের পেশা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorOccupation, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorOccupation, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="font-family:'Times New Roman'">
+                                <!-- general form elements -->
+                                <div class="card card-primary">
+                                    <div class="card-body box-profile">
+                                        <div class="row">
+                                            <div id='img_contain' style="padding-left:22%;">
+                                                <img id="sample_img" src="~/Content/img/no.jpg" alt="your image" title='' width="150" height="170" />
+
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="GuarantorPic">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbSavingAmount, "DMCB এ সঞ্চয় হিসাব (যদি থাকে) CD / SB / MSP / WSP / BSP / ESP / MTDR মোট সঞ্চয়ঃ ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbSavingAmount, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbSavingAmount, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-10 row">
+                                <div class="col-md-6">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanName, "DMCB এর বিনিয়োগ হিসাব নং (যদি থাকে) ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanName, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanAmount, "বিনিয়োগের পরিমান ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanAmount, new { htmlAttributes = new { @class = "form-control col-md-6", @style = "padding-left: 0px;" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanAmount, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="card-body row col-md-10">
+                                <label class="col-md-4" style="padding-left: 15px;">জামিনদারের স্বাক্ষর(<small>সংশ্লিষ্ট IO কর্তৃক সত্যায়িত</small>) </label>
+                                <input value="" class="col-md-8" />
+                            </div>
+                        </div>
+
+
+                        @* jamindar2 *@
+
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorName1, "জামিনদারের নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorName1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorName1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorFather1, "পিতার/স্বামীর নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorFather1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div class="">
+                                                    @Html.ValidationMessageFor(model => model.GuarantorFather1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PermanentVillage1, "স্থায়ী ঠিকানা(গ্রামঃ)", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.PermanentVillage1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.PermanentVillage1, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPS1, "থানা/উপজেলাঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPS1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPS1, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPresentAddress1, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPresentAddress1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPresentAddress1, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorNID1, "জাতীয় পরিচয় পত্র নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorNID1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorNID1, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorRelation1, "ঋণ/বিনিয়োগ আবেদনকারীর সাথে সম্পর্কঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorRelation1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorRelation1, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body mb-1">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDateofBirth1, "জন্ম তারিখ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorDateofBirth1, new { htmlAttributes = new { @class = "form-control col-md-8 date" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDateofBirth1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorMother1, "মাতার নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorMother1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorMother1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPO1, "ডাকঘর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPO1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPO1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPermanentDistrict1, "জেলা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPermanentDistrict1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPermanentDistrict1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorBusinessAddress1, "ব্যবসায়িক ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorBusinessAddress1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorBusinessAddress1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPhone1, "টেলিফোন/মোবাইল", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPhone1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPhone1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorOccupation1, "জামিনদারের পেশা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorOccupation1, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorOccupation1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="font-family:'Times New Roman'">
+                                <!-- general form elements -->
+                                <div class="card card-primary">
+                                    <div class="card-body box-profile">
+                                        <div class="row">
+                                            <div id='img_contain1' style="padding-left:22%;">
+                                                <img id="sample_img1" src="~/Content/img/no.jpg" alt="your image" title='' width="150" height="170" />
+
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="GuarantorPic1">
+                                                <label class="custom-file-label" for="GuarantorPic1">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbSavingAmount1, "DMCB এ সঞ্চয় হিসাব (যদি থাকে) CD / SB / MSP / WSP / BSP / ESP / MTDR মোট সঞ্চয়ঃ ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbSavingAmount1, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbSavingAmount1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanName1, "DMCB এর বিনিয়োগ হিসাব নং (যদি থাকে) ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanName1, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanName1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-5">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanAmount1, "বিনিয়োগের পরিমান ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanAmount1, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanAmount1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* end *@
+                        @* jamindar3 *@
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorName2, "জামিনদারের নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorName2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorName2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorFather2, "পিতার/স্বামীর নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorFather2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div class="">
+                                                    @Html.ValidationMessageFor(model => model.GuarantorFather2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.PermanentVillage2, "স্থায়ী ঠিকানা(গ্রামঃ)", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.PermanentVillage2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.PermanentVillage2, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPS2, "থানা/উপজেলাঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPS2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPS2, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPresentAddress2, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPresentAddress2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPresentAddress2, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorNID2, "জাতীয় পরিচয় পত্র নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorNID2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorNID2, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorRelation2, "ঋণ/বিনিয়োগ আবেদনকারীর সাথে সম্পর্কঃ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorRelation2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorRelation2, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5">
+                                <!-- general form elements -->
+                                <div class="">
+                                    <form>
+                                        <div class="card-body mb-1">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDateofBirth2, "জন্ম তারিখ", htmlAttributes: new { @class = "col-md-4 " })
+                                                @Html.EditorFor(model => model.GuarantorDateofBirth2, new { htmlAttributes = new { @class = "form-control col-md-8 date" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDateofBirth2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorMother2, "মাতার নাম", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorMother2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorMother2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPO2, "ডাকঘর", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPO2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPO2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPermanentDistrict2, "জেলা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPermanentDistrict2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPermanentDistrict2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorBusinessAddress2, "ব্যবসায়িক ঠিকানা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorBusinessAddress2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorBusinessAddress2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorPhone2, "টেলিফোন/মোবাইল", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorPhone2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorPhone2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorOccupation2, "জামিনদারের পেশা", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorOccupation2, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorOccupation2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="font-family:'Times New Roman'">
+                                <!-- general form elements -->
+                                <div class="card card-primary">
+                                    <div class="card-body box-profile">
+                                        <div class="row">
+                                            <div id='img_contain2' style="padding-left:22%;">
+                                                <img id="sample_img2" src="~/Content/img/no.jpg" alt="your image" title='' width="150" height="170" />
+
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="GuarantorPic2">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbSavingAmount2, "DMCB এ সঞ্চয় হিসাব (যদি থাকে) CD / SB / MSP / WSP / BSP / ESP / MTDR মোট সঞ্চয়ঃ ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbSavingAmount2, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbSavingAmount2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanName2, "DMCB এর বিনিয়োগ হিসাব নং (যদি থাকে) ", htmlAttributes: new { @class = "col-md-6", @style = "font-family:Calibri;" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanName2, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanName2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-5">
+                                    <form>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.GuarantorDmcbLoanAmount2, "বিনিয়োগের পরিমান ", htmlAttributes: new { @class = "col-md-4" })
+                                                @Html.EditorFor(model => model.GuarantorDmcbLoanAmount2, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                                <div>
+
+                                                    @Html.ValidationMessageFor(model => model.GuarantorDmcbLoanAmount2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @* end *@
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <div class="tab-content">
+            <div class="container-fluid card card-primary">
+                <div class="row mb-1">
+
+
+                </div>
+
+                <section class="content">
+                    <div class="">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <h1 style="margin-top:100px;" class="text-center">ঋণ / বিনিয়োগ চুক্তিভঙ্গ / খেলাপী সম্পর্কে অঙ্গীকারনামা ও সম্মতিপত্র</h1>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </div>
+                    <div class="container-fluid card card-primary">
+
+                        <div style="padding-left:10px;">
+
+                            <p id="plast">
+
+
+                                #	আমি / আমরা ঋণ / বিনিয়োগ গ্রহীতা এ মর্মে অঙ্গীকার করছি যে, আমার ঋণ / বিনিয়োগের, <input id="TLoanAmount" value="" class=" col-md-2" /> টাকা নির্ধারিত মেয়াদের মধ্যে মুনাফাসহ,  <input id="LoanInstallment2" value="" class=" col-md-2" /> টি মাসিক কিস্তিতে,<input id="LoanRecoveryDays2" value="" class=" col-md-2" /> দিনে /মাসে নিয়মিতভাবে  পরিশোধ করবো।<br />
+
+                                #	আমি/আমরা অঙ্গীকার করছি যে ,ক্ষুদ্র/বিনিয়োগের কিস্তি প্রতিদিন দুপুর ২:০০ ঘটিকার মধ্যে পরিশোধ পূর্বক ব্যাংকের <a style="font-family:Calibri">Collection Sheet</a>-এ স্বাক্ষর প্রদান করবো ।<br />
+
+                                #	আমি/আমরা অঙ্গীকার করছি যে ,আমার/আমাদের অনুকূলে গঠিত ঝুঁকি তহবিল (তাবাররু) এ প্রস্তাবিত অনুদান প্রদান করবো ।<br />
+
+                                #   দি ঢাকা মার্কেন্টাইল কো -অপারেটিভ ব্যাংক লিমিটেড কর্তৃক প্রণীত ঋণ /বিনিয়োগের সকল নিয়ম কানুন যথাযতভাবে মেনে চলব ।<br />
+
+                                #   আমি / আমরা প্রত্যয়ন করছি যে ,কোন বাণিজ্যিক ব্যাংক, এন.জি.ও  অথবা অন্য কোন আর্থিক প্রতিষ্ঠানের নিকট আমার /আমাদের কোন ঋণ /বিনিয়োগ বকেয়া নেই এবং ভবিষ্যতেও আপনার প্রতিষ্টানের ঋণ /বিনিয়োগ পরিশোধের পূর্বে আমি /আমরা অন্য কোন ব্যাংক , এন.জি.ও  অথবা অন্য কোন আর্থিক প্রতিষ্টান থেকে ঋণ /বিনিয়োগ গ্রহন করবো না। <br />
+
+                                #	আমি / আমরা আরও নিশ্চয়তা প্রদান করছি যে <input id="DailySaving" value="" class=" col-md-1" /> টাকার একটি দৈনিক সঞ্চয় প্রকল্প <input id="DailySavingYear" value="" class="col-md-1" /> বৎসর মেয়াদী, <input id="DailySaving2" value="" class="col-md-1" /> টাকার একটি <input id="DailySavingType" class="" style="border-bottom:none;text-align:center;" /> সঞ্চয় প্রকল্প <input value="" id="shikkhabibahDuration" class="col-md-1" /> বৎসর মেয়াদী এবং <input value="" id="MonthlySavingAmount" class="col-md-1" /> টাকার একটি মাসিক সঞ্চয় প্রকল্প হিসাব <input value="" id="MonthlySavingAmountYear" class="col-md-1" /> বৎসর মেয়াদি খুলবে এবং নিয়মিত পরিচালনা করবো।<br />
+                                <br />
+
+
+                            <p class="text-bold">বাই- মুরাবাহা ঋণ/বিনিয়োগ চুক্তিভঙ্গ/ খেলাপী সম্পর্কে সম্মতিপত্রঃ</p>
+                            আমি / আমরা এ মর্মে ঘোষনা করছি যে, অত্র আবেদনপত্রে দাখিলকৃত সমস্ত তথ্যাবলী সস্পূর্ন নির্ভূল ও সত্য। আমি / আমরা এ মর্মে প্রতিশ্র“তি ও অঙ্গীকার করছি যে,
+                            মঞ্জুরীকৃত ঋণ / বিনিয়োগের অর্থ উলে­খিত ব্যবসার কাজে যথাযথ ব্যবহার করব এবং এ অর্থ কোন ক্রমেই অন্য কোন  কাজে ব্যবহার করব না। আমি / আমরা আরও
+                            অঙ্গীকার করছি যে, গৃহীত ঋণ / বিনিয়োগের টাকা শর্তানুযায়ী সময়মত মুনাফাসহ পরিশোধ করব। নির্ধারিত মেয়াদের মধ্যে গ্রহনকৃত ঋণ / বিনিয়োগের অর্থ পরিশোধ
+
+                            না করলে দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,<input id="BranchName3" value="" class="col-md-1" style="font-family:Calibri" /> শাখা সমবায় আইনের ধারা ৩২ মোতাবেক সার্টিফিকেট মামলা দায়ের সহ
+
+                            সকল প্রকার আইনগত ব্যবস্থা গ্রহন করে আমার নিকট থেকে ঋণ / বিনিয়োগের অনাদায়ী সমুদয় অর্থ (আসল, মুনাফা, পেনাল্টি চার্জ, মামলার খরচ, আইনগত প্রক্রিয়ার
+                            অন্যান্য আনুষঙ্গিক খরচ ও ক্ষতি পূরণ) আদায়ের ব্যবস্থা করতে পারবে।<br /><br /><br />
+
+                            <div class="row card-body">
+                                <div class="col-md-3">
+                                    <input value="" class="col-md-10" />
+                                    <br />
+                                    <label class="col-md-10" style="text-align:center; color:#050397">ঋণ/ বিনিয়োগ আবেদনকারীর স্বাক্ষর <br /><strong style="color:black; font-size:12px;"> (ব্যবস্থাপক/২য় কর্মকর্তা কর্তৃক সত্যায়িত)</strong></label>
+                                </div>
+
+                            </div>
+                            <br /><br /><br />
+                            শাখা ব্যবস্থাপক ও কর্মকর্তার মন্তব্যঃ<br /><br />
+                            আমি/আমরা পৃথকভাবে সরেজমিনে বিনিয়োগ সংক্রান্ত তথ্য অনুসন্ধান ও তদন্ত করে বিনিয়োগ আবেদনকারীর দেয়া তথ্যাবলী (আবেদনপত্রের প্রথম হতে শেষ পর্যন্ত) বিনিয়োগ কর্মকর্তার
+                            দেয়া মতামত এবং সঞ্চয় ও ঋণ / বিনিয়োগের তথ্যাবলী সঠিক বলে প্রতীয়মান হওয়ায় তার অনুকলে,<input id="LoanAmountTotal3" value="" class="col-md-1" /> টাকা ক্ষুদ্র/ সাধারণ/ চলতি মূলধন ঋণ / বিনিয়োগ নতুন / নবায়ন / পুনঃনবায়ন ও বর্ধিতকরণ মঞ্জুরি প্রদানের সুপারিশ করছি, যা দৈনিক/মাসিক,<input id="LoanInstallmentAmount3" value="" class="col-md-1" /> টাকা করে, <input id="LoanRecoveryDays3" value="" class="col-md-1" /> টি কিস্তিতে আদায়যোগ্য হবে।
+                            আমি / আমরা ঋণ / বিনিয়োগ গ্রহীতার ও জামিনদারের সই / স্বাক্ষর সনাক্ত করলাম। তারা আমার / আমাদের সামনে নিজ নিজ
+                            নাম সই/স্বাক্ষর করেছেন।<br /><br /><br />
+
+                            <div class="row card-body">
+
+                                <div class="col-md-2">
+                                    <input value="" class="col-md-6" />
+                                    <br />
+                                    <label class="col-md-6" style="text-align:center;">বিনিয়োগ কর্মকর্তা</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input value="" class="col-md-8" />
+                                    <br />
+                                    <label class="col-md-8" style="text-align:center; color:black">প্রতিনিধি</label>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <input value="" class="col-md-8" />
+                                    <br />
+                                    <label class="col-md-8" style="text-align:center; color:black">বিনিয়োগ তত্ত্ববধান কর্মকর্তা</label>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <input value="" class="col-md-8" />
+                                    <br />
+                                    <label class="col-md-8" style="text-align:center; color:black">২য় কর্মকর্তা</label>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <input value="" class="col-md-8" />
+                                    <br />
+                                    <label class="col-md-8" style="text-align:center; color:black">ব্যবস্থাপক</label>
+                                </div>
+
+                            </div>
+
+
+
+                            <br />
+
+
+                        </div>
+
+
+                        <section class="content-header">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3 class="text-center">অনুমোদনকারী কর্তৃপক্ষ</h3>
+                                        <hr />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div style="padding-left:10px;">
+                            <p id="plast">
+                                নিম্নবর্ণিত শর্ত সাপেক্ষে,<input id="LoanAmountTotal4" value="" class="col-md-1" /> টাকা, ঋণ / বিনিয়োগ মঞ্জুরী দেয়া হলো। <br />
+                                ১.	ঋণ / বিনিয়োগের টাকা সার্ভিস চার্জ / মুনাফাসহ  দৈনিক / মাসিক <input id="LoanInstallmentAmount4" value="" class="col-md-1" /> টাকা করে।&nbsp;  <input id="LoanInstallment4" value="" class="col-md-1" />টি  কিস্তিতে। &nbsp;<input id="LoanRecoveryDays4" value="" class="col-md-1" /> দিনে /মাসে আদায় করা হবে । নির্ধারিত মেয়াদের মধ্যে কোন কিস্তি বকেয়া পড়লে এবং নির্ধারিত মেয়াদের মধ্যে ঋণ / বিনিয়োগ পরিশোধে ব্যর্থ হলে, বকেয়া কিস্তির উপর মাসিক,&nbsp;<input id="DefalterBokeya" value="" class="col-md-1" /> % এবং  মেয়াদোত্তীর্ণ ঋণ / বিনিয়োগের স্থিতির উপর মাসিক,&nbsp;<input id="DefalterStithi" value="" class="col-md-1" /> % হারে অতিরিক্ত চার্জ প্রযোজ্য হবে। <br />
+                                ২. ক্ষুদ্র  /ঋণ /বিনিয়োগের এক (১) দিন পর থেকে দৈনিক ভিত্তিতে ঋণ /বিনিয়োগের কিস্তি নিয়মিত ভাবে পরিশোধ করতে হবে । <br />
+                                ৩. ঋণ / বিনিয়োগ পরিশোধ না হওয়া পর্যন্ত চলতি/সঞ্চয়ী হিসাব নং, &nbsp;<input id="MAccountNo4" value="" class="col-md-1" /> এর &nbsp; <input id="AmountInAccount4" value="" class="col-md-1" /> টাকা লিয়েন/সিকিউরিটি হিসাবে যা প্রধান কার্যালয়ের অনুমোদন ব্যতীত উত্তোলন করা যাবে না।<br />
+                                ৪. <input id="DailySaving4" value="" class="col-md-1" />টাকার একটি দৈনিক সঞ্চয় প্রকল্প, &nbsp;<input id="DailySavingYear4" value="" class="col-md-1" />  বৎসর মেয়াদী,&nbsp;<input id="DailySaving5" value="" class="col-md-1" />  টাকার একটি, &nbsp; <input id="DailySavingType4" value="" class="col-md-1" /> সঞ্চয় প্রকল্প,&nbsp; <input id="shikkhabibahDuration4" value="" class="col-md-1" /> বৎসর মেয়াদী এবং &nbsp;<input id="MonthlySavingAmount4" value="" class="col-md-1" /> টাকার একটি মাসিক সঞ্চয় প্রকল্প হিসাব, &nbsp;<input id="MonthlySavingAmountYear4" value="" class="col-md-1" /> বৎসর মেয়াদি খুলতে হবে । ঋণ /বিনিয়োগ সম্পূর্ণ  সময়ন্নয় না হওয়া পর্যন্ত উক্ত হিসাবগুলো মেয়াদপূর্তির পূর্বে নগদায়ন করতে পারবো না
+                                ।<br />
+                                ৫. দৈনিক ও মাসিক সঞ্চয় প্রকল্পের কিস্তি অনিয়মিত হলে পরবর্তী বিনিয়োগ বৃদ্ধি করা হবে না। এছাড়াও ঋণ /বিনিয়োগের উল্লিখিত শর্তাবলীর  কোন একটি লঙঘন /ভঙ্গ হলে সেক্ষেত্রে ঋণ /বিনিয়োগ অবশিষ্ট অর্থ /পাওনা আদায়ের প্রয়োজনীয় ব্যবস্থা গ্রহন করা হবে ।
+
+                            </p>
+                        </div>
+                        <br /><br />
+                        <div class="row card-body">
+                            <div class="col-md-4">
+                                <label class="col-md-2"> তারিখঃ</label>
+                                <input value="" class="col-md-6" />
+                            </div>
+                            <div class="col-md-3">
+                                <input value="" class="col-md-8" />
+                                <br />
+                                <label class="col-md-8">যাচাইকারী বিনিয়োগকারী কর্মকর্তার স্বাক্ষর</label>
+                                <label class="col-md-8"> নাম :</label>
+                                <label class="col-md-8">স্টাফ আইডি :</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input value="" class="col-md-8" />
+                                <br />
+                                <label class="col-md-8">সুপারিশকারী কর্মকর্তার স্বাক্ষর</label>
+                                <label class="col-md-8"> নাম :</label>
+                                <label class="col-md-8">স্টাফ আইডি :</label>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2">
+                                <input value="" class="col-md-10" />
+                                <label class="col-md-10" style="text-align:center;">অনুমোদনকারী কর্তৃপক্ষঃ</label>
+                                <br /><br /> <br /><br /> <br /><br />
+                            </div>
+                            <br /><br />
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-5">
+                                <h5>স্বীকারোক্তি </h5>
+                                আমি উপরোক্ত শর্তাবলী পরিপালন করে বাই-মুরাবাহা ঋণ /বিনিয়োগ গ্রহণে সম্মত আছি । <br />
+                                ঋণ /বিনিয়োগ গ্রহীতার নাম :..........................................................<br />
+                                স্বাক্ষর &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:..........................................................<br />
+                                ঋণ/বিনিয়োগ গ্রহণের তারিখ :.........................................................
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <div class="form-group row" style="font-family:'Times New Roman'">
+
+            <div class="col-md-7" style="float:right">  </div>
+
+            <br />
+            <div class="col-md-3">
+                <input id="print" value="Print" class="btn btn-dark bg-success btn-block bold btn-lg" />
+            </div>
+            <input id="save2" value="" hidden />
+            <input id="search" value="" hidden />
+            <input id="FormID" value="" hidden />
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<script src="~/Scripts/ViewJsFiles/Loan/LoanEntry.js"></script>*@
+
+<script>
+        //$('#print').click(function () {
+        //    var toPrint = document.getElementById('content');
+
+        //    var popupWin = window.open('', '', 'toolbar=yes,scrollbars=yes,resizable=yes,width=800,height=800,location=no,left=200px');
+        //    popupWin.document.open();
+        //    popupWin.document.write('<html><head><title>Cases Report </title><style>h1{font-size:10px} h4{font-size:14px}  .no-print,#hide{display: none;} .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{ }a[href]:after {content: none !important;}      </style> <link rel="stylesheet" type="text/css"   href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />  <link href="/Content/site.css" rel="stylesheet"/></head>');
+
+
+        //    popupWin.document.write('<body onload="window.print();" style="padding:5%"> <div >   ');
+        //    popupWin.document.write('<img src="/Content/img/banner/banner_1000.png" width="420" /> ');
+        //    popupWin.document.write('<h2>Case Infomation</h3>  ');
+
+
+
+
+        //    popupWin.document.write('<table class="table table-responsive  table-hover table-bordered" style="font-size:12px" id="print">');
+        //    popupWin.document.write(toPrint.innerHTML);
+        //    popupWin.document.write('</table>');
+
+
+
+
+        //    popupWin.document.write('</div></body></html>');
+        //    popupWin.document.close();
+        //});
+        $('#print').click(function () {
+            window.print();
+        });
+        //$(".input").attr("readonly", true);
+        $('input').attr('readonly', true);
+
+        $('#MemberNo').change(function () {
+
+            $("#TRMemberNo").val($("#MemberNo").val());
+            $("#jMemberNo").val($("#MemberNo").val());
+        });
+
+        $('#BranchCode').change(function () {
+
+            $("#TRBranchCode").val($("#BranchCode").val());
+            $("#jBranchNo").val($("#BranchCode").val());
+        });
+
+        $('#LoanAmountTotal').change(function () {
+
+            $("#TRTotalLoanAmount").val($("#LoanAmountTotal").val());
+            $("#jTotalLoanAmount").val($("#LoanAmountTotal").val());
+        });
+        $('#AplicantName').change(function () {
+
+            $("#TRApplicantName").val($("#AplicantName").val());
+            $("#jApplicantName").val($("#AplicantName").val());
+            $("#j2ApplicantName").val($("#AplicantName").val());
+        });
+
+        //Edit Page show Data
+
+
+        $(".chb").change(function () {
+            $(".chb").prop('checked', false);
+            $(this).prop('checked', true);
+        });
+
+        $('#customCheckbox1').change(function () {
+
+            $("#ownDiv").attr("hidden", false);
+            $("#rentDiv").attr("hidden", true);
+        });
+
+        $('#customCheckbox2').change(function () {
+            $('#ownDiv').attr("hidden", true);
+
+            $("#rentDiv").attr("hidden", false);
+        });
+
+        $('#DailySaleAmount').keyup(function () {
+            var DailyProfit = $("#DailyProfit").val();
+            var DailySaleAmount = $("#DailySaleAmount").val();
+            if (DailyProfit == '') {
+                $("#DailyIncome").val(0);
+            } else {
+                $("#DailyIncome").val((DailySaleAmount * DailyProfit) / 100);
+            }
+
+        });
+
+        $('#DailyProfit').keyup(function () {
+
+            var DailyProfit = $("#DailyProfit").val();
+            var DailySaleAmount = $("#DailySaleAmount").val();
+            if (DailySaleAmount == '') {
+                $("#DailyIncome").val(0);
+            } else {
+                $("#DailyIncome").val((DailySaleAmount * DailyProfit) / 100);
+            }
+        });
+
+        $('#MonthlySaleAmount').keyup(function () {
+            var MonthlyProfit = $("#MonthlyProfit").val();
+            var MonthlySaleAmount = $("#MonthlySaleAmount").val();
+            if (MonthlyProfit == '') {
+                $("#MonthlyIncome").val(0);
+            } else {
+                $("#MonthlyIncome").val((MonthlySaleAmount * MonthlyProfit) / 100);
+            }
+
+        });
+
+        $('#MonthlyProfit').keyup(function () {
+
+            var MonthlyProfit = $("#MonthlyProfit").val();
+            var MonthlySaleAmount = $("#MonthlySaleAmount").val();
+            if (MonthlySaleAmount == '') {
+                $("#MonthlyIncome").val(0);
+            } else {
+                $("#MonthlyIncome").val((MonthlySaleAmount * MonthlyProfit) / 100);
+            }
+        });
+
+    jQuery('#LoanNo[data-inputmask-mask]').inputmask();
+        //$('#Date').datetimepicker({
+        //    format: 'L'
+        //});
+
+        //$('#DateofBirth').datetimepicker({
+        //    format: 'L'
+        //});
+
+        $('.date').datepicker({
+            autoclose: true,
+            format: 'dd-mm-yyyy',
+        });
+        $('.select2').select2()
+        var CurrentSavingTBL = $('#CurrentSaving').DataTable({
+            "paging": false,
+            "searching": false,
+            "lengthChange": false,
+            "info": false,
+            "language": {
+                "emptyTable": "Z_¨ bvB"
+            }
+
+        });
+        var BiMudarabaTBL = $('#BiMudaraba').DataTable({
+            "paging": false,
+            "searching": false,
+            "lengthChange": false,
+            "info": false,
+
+            "autoWidth": true,
+            "ordering": true,
+            "language": {
+                "emptyTable": "Z_¨ bvB"
+            }
+
+        });
+        var OtherBankTBL = $('#OtherBank').DataTable({
+            "paging": false,
+            "searching": false,
+            "lengthChange": false,
+            "info": false,
+
+            "autoWidth": true,
+            "ordering": true,
+            "language": {
+                "emptyTable": "Z_¨ bvB"
+            }
+
+        });
+
+        var RetentionPropertyTBL = $('#Retention').DataTable({
+            "paging": false,
+            "searching": false,
+            "lengthChange": false,
+            "info": false,
+
+            "autoWidth": true,
+            "ordering": true,
+            "language": {
+                "emptyTable": "Z_¨ bvB"
+            }
+
+        });
+        var TRInvestmentTBL = $('#TRInvestment').DataTable({
+            "paging": false,
+            "searching": false,
+            "lengthChange": false,
+            "info": false,
+
+            "autoWidth": true,
+            "ordering": true,
+            "language": {
+                "emptyTable": "Z_¨ bvB"
+            }
+
+        });
+
+        $(document).ready(function () {
+               var FormNo = '@ViewBag.FormNo';
+            console.log(FormNo)
+            var value = FormNo;
+            //   $('#search').val(FormNo);
+            //$("#search").click();
+
+            var url = location.protocol + '//' + location.host + "/LoanEntry/GetLoanData?q=" + value;
+            $.get(url, function (data) {
+                ShowAllSingleField(data);
+                ShowBiMudarabaEdit(data);
+                ShowCurrentSavingEdit(data);
+                ShowGuarantorEdit(data);
+                ShowOtherBankEdit(data);
+                ShowTrInvestmentDataEdit(data);
+                ShowRetentionDataEdit(data);
+
+
+            });
+
+
+           // $("#print").click();
+         });
+        $("#search").click(function () {
+            
+
+
+            
+
+
+
+
+
+        });
+
+        function ShowAllSingleField(data) {
+            if (data.MemInfoData["MLFile"]!=null) {
+                $("#CustomerImage").attr('src', data.MemInfoData["MLFile"]);
+            }
+
+            $("#SoftwareLoanNo").val(data.MemInfoData["SoftwareLoanNo"]);
+            //$("#FormID").val(data.MemInfoData["FormID"]);
+            $("#ApprovalNo").val(data.MemInfoData["ApprovalNo"]);
+            $("#MemberNo").val(data.MemInfoData["MemberNo"]);
+
+
+            //if (data.MemInfoData["Date"] != null) {
+            //    var date = (moment(data.MemInfoData["Date"]).format("DD-MM-YYYY"));
+            //    $('#Date').datepicker('setDate', date);
+            //} else {
+            //    $("#Date").val("");
+            //}
+            if (data.MemInfoData["Date"] != null) {
+                var date = (moment(data.MemInfoData["Date"]).format("DD-MM-YYYY"));
+                $('#Date').val( date);
+            } else {
+                $("#Date").val("");
+            }
+
+
+            //$('#Date').val(date);
+
+            $("#ShareNumber").val(data.MemInfoData["ShareNumber"]);
+            $("#ShareAmount").val(data.MemInfoData["ShareAmount"]);
+            $("#FieldNo").val(data.MemInfoData["FieldNo"]).change();
+            $("#LoanNo").val(data.MemInfoData["LoanNo"]);
+            $("#FormID").val(data.MemInfoData["FormID"]);
+            //$("#BranchCode").val(data.MemInfoData["BranchCode"]);
+
+            $("#BranchCode").val(data.VMemberLoandata["BranchName"]);
+            $("#TRBranchCode").val(data.VMemberLoandata["BranchName"]);
+            $("#jBranchNo").val(data.VMemberLoandata["BranchName"]);
+            $("#j2BranchNo").val(data.VMemberLoandata["BranchName"]);
+
+            $("#AplicantName").val(data.MemInfoData["AplicantName"]);
+            //$("#DateofBirth").val(data.MemInfoData["DateofBirth"]);
+            if (data.MemInfoData["DateofBirth"] != null) {
+                var DateofBirth = (moment(data.MemInfoData["DateofBirth"]).format("DD-MM-YYYY"));
+                $('#DateofBirth').datepicker('setDate', DateofBirth);
+            } else {
+                $("#DateofBirth").val("");
+            }
+            $("#FatherName").val(data.MemInfoData["FatherName"]);
+            $("#MotherName").val(data.MemInfoData["MotherName"]);
+            $("#NID").val(data.MemInfoData["NID"]);
+            $("#Village").val(data.MemInfoData["Village"]);
+            $("#District").val(data.MemInfoData["District"]);
+            $("#PO").val(data.MemInfoData["PO"]);
+            $("#PS").val(data.MemInfoData["PS"]);
+            $("#PresentAddress").val(data.MemInfoData["PresentAddress"]);
+            $("#BusinessAddress").val(data.MemInfoData["BusinessAddress"]);
+            $("#PhoneNumber").val(data.MemInfoData["PhoneNumber"]);
+            $("#MobileNumber").val(data.MemInfoData["MobileNumber"]);
+            $("#Email").val(data.MemInfoData["Email"]);
+            $("#BusinessNature").val(data.MemInfoData["BusinessNature"]);
+            $("#BusinessType").val(data.MemInfoData["BusinessType"]);
+            $("#MotiveofLoan").val(data.MemInfoData["MotiveofLoan"]);
+
+
+
+            $("#LoanType").val(data.MemInfoData["LoanType"]);
+            $("#LoanSubType").val(data.MemInfoData["LoanSubType"]);
+            $("#LoanInstallmentType").val(data.MemInfoData["LoanInstallmentType"]);
+            $("#DailySavingType").val(data.MemInfoData["DailySavingType"]);
+            $("#DefalterBokeya").val(data.MemInfoData["DefalterBokeya"]);
+
+
+
+            //$("#DateOwn").val(data.MemInfoData["DateOwn"]);
+
+            //$("#DateRent").val(data.MemInfoData["DateRent"]);
+
+
+
+
+
+            if (data.MemInfoData["AmountRent"] != '') {
+
+                $('#customCheckbox2').prop('checked', true);
+                $('#customCheckbox1').prop('checked', false);
+
+                $("#rentDiv").attr("hidden", false);
+                $("#ownDiv").attr("hidden", true);
+
+
+
+                $("#AmountRent").val(data.MemInfoData["AmountRent"]);
+                $("#NameRent2").val(data.MemInfoData["NameRent"]);
+
+
+                if (data.MemInfoData["DateRent"] != null) {
+                    var DateRent = (moment(data.MemInfoData["DateRent"]).format("DD-MM-YYYY"));
+                    $('#DateRent').datepicker('setDate', DateRent);
+                } else {
+                    $("#DateRent").val("");
+                }
+
+                if (data.MemInfoData["LastDate"] != null) {
+                    var LastDate = (moment(data.MemInfoData["LastDate"]).format("DD-MM-YYYY"));
+                    $('#LastDate2').datepicker('setDate', LastDate);
+                } else {
+                    $("#LastDate2").val("");
+                }
+
+
+            } else {
+
+                $('#customCheckbox2').prop('checked', false);
+                $('#customCheckbox1').prop('checked', true);
+
+                $("#rentDiv").attr("hidden", true);
+                $("#ownDiv").attr("hidden", true);
+
+                $("#NameRent2").val(data.MemInfoData["NameRent"]);
+                if (data.MemInfoData["DateOwn"] != null) {
+                    var DateOwn = (moment(data.MemInfoData["DateOwn"]).format("DD-MM-YYYY"));
+                    $('#DateOwn').datepicker('setDate', DateOwn);
+                } else {
+                    $("#DateOwn").val("");
+                }
+
+                if (data.MemInfoData["LastDate"] != null) {
+                    var LastDate = (moment(data.MemInfoData["LastDate"]).format("DD-MM-YYYY"));
+                    $('#LastDate').datepicker('setDate', LastDate);
+                } else {
+                    $("#LastDate").val("");
+                }
+            }
+
+
+            console.log(data.MemInfoData["LastDate"]);
+
+
+
+            $("#OwnAmount").val(data.MemInfoData["OwnAmount"]);
+            $("#MonthlyAvarageIncome").val(data.MemInfoData["MonthlyAvarageIncome"]);
+            $("#DailySaleAmount").val(data.MemInfoData["DailySaleAmount"]);
+            $("#DailyProfit").val(data.MemInfoData["DailyProfit"]);
+            $("#DailyIncome").val(data.MemInfoData["DailyIncome"]);
+            $("#MonthlySaleAmount").val(data.MemInfoData["MonthlySaleAmount"]);
+            $("#MonthlyProfit").val(data.MemInfoData["MonthlyProfit"]);
+            $("#MonthlyIncome").val(data.MemInfoData["MonthlyIncome"]);
+            $("#MAccountNo").val(data.MemInfoData["MAccountNo"]);
+            $("#AmountInAccount").val(data.MemInfoData["AmountInAccount"]);
+            $("#LoanAmountTotal").val(data.MemInfoData["LoanAmountTotal"]);
+            $("#LoanInstallmentAmount").val(data.MemInfoData["LoanInstallmentAmount"]);
+            $("#LoanInstallment").val(data.MemInfoData["LoanInstallment"]);
+            $("#LoanRecoveryDays").val(data.MemInfoData["LoanRecoveryDays"]);
+            //$("#LoanProvideDate").val(data.MemInfoData["LoanProvideDate"]);
+
+            if (data.MemInfoData["LoanProvideDate"] != null) {
+                var LoanProvideDate = (moment(data.MemInfoData["LoanProvideDate"]).format("DD-MM-YYYY"));
+                $('#LoanProvideDate').datepicker('setDate', LoanProvideDate);
+            }else {
+                $("#LoanProvideDate").val("");
+            }
+
+
+
+
+
+
+            $("#TRMemberNo").val(data.MemInfoData["MemberNo"]);
+            $("#jMemberNo").val(data.MemInfoData["MemberNo"]);
+
+
+
+            $("#TRTotalLoanAmount").val(data.MemInfoData["LoanAmountTotal"]);
+            $("#jTotalLoanAmount").val(data.MemInfoData["LoanAmountTotal"]);
+            $("#TRApplicantName").val(data.MemInfoData["AplicantName"]);
+            $("#jApplicantName").val(data.MemInfoData["AplicantName"]);
+            $("#j2ApplicantName").val(data.MemInfoData["AplicantName"]);
+            $("#FormID").val(data.MemInfoData["FormID"]);
+            $("#DefalterStithi").val(data.MemInfoData["DefalterStithi"]);
+
+
+
+
+            $("#DailySaving").val(data.MemInfoData["DailySaving"]);
+            $("#DailySaving2").val(data.MemInfoData["DailySaving2"]);
+            $("#DailySavingYear").val(data.MemInfoData["DailySavingYear"]);
+            $("#shikkhabibahDuration").val(data.MemInfoData["shikkhabibahDuration"]);
+            $("#MonthlySavingAmount").val(data.MemInfoData["MonthlySavingAmount"]);
+            $("#MonthlySavingAmountYear").val(data.MemInfoData["MonthlySavingAmountYear"]);
+
+            //$("#LoanType").val(data.MemInfoData["LoanType"]);
+
+        }
+
+
+
+
+
+
+        function ShowBiMudarabaEdit(data) {
+            $.each(data.BiMudarabaData, function (index, value) {
+                debugger;
+                var addBiMudarabaRows2 = { TypeofInvestment: '', DescriptionofInvestment: '', InvestmentAmount: 0, ExecptDate: '', ExpireDate: '', PresentStatus: '', OwnBussinessAsset: 0, GodownStock: 0, AverageSales: 0, AverageIncome: 0 }
+
+                addBiMudarabaRows2.TypeofInvestment = value.TypeofInvestment;
+                addBiMudarabaRows2.DescriptionofInvestment = value.DescriptionofInvestment;
+                addBiMudarabaRows2.InvestmentAmount = value.InvestmentAmount;
+                var ExecptDate = (moment(value.ExecptDate).format("DD-MM-YYYY"));
+                var ExpireDate = (moment(value.ExpireDate).format("DD-MM-YYYY"));
+                addBiMudarabaRows2.ExecptDate = ExecptDate;
+                addBiMudarabaRows2.ExpireDate = ExpireDate;
+                addBiMudarabaRows2.PresentStatus = value.PresentStatus;
+                addBiMudarabaRows2.OwnBussinessAsset = value.OwnBussinessAsset;
+                addBiMudarabaRows2.GodownStock = value.GodownStock;
+                addBiMudarabaRows2.AverageSales = value.AverageSales;
+                addBiMudarabaRows2.AverageIncome = value.AverageIncome;
+                addBiMudarabaRows.push(addBiMudarabaRows2);
+            });
+
+            ShowOnTableBiMudaraba();
+        }
+
+
+
+        function ShowCurrentSavingEdit(data) {
+            $.each(data.CurrentSavingData, function (index, value) {
+                var addCurrentSavingRows2 = { TypesofSavings: '', AccountNo: '', AccountopenDate: '', InstallmentAmount: 0, PresentAmount: 0, Status: '' }
+                addCurrentSavingRows2.TypesofSavings = value.TypesofSavings;
+                addCurrentSavingRows2.AccountNo = value.AccountNo;
+
+                addCurrentSavingRows2.AccountopenDate = (moment(value.AccountopenDate).format("DD-MM-YYYY"));
+                addCurrentSavingRows2.InstallmentAmount = value.InstallmentAmount;
+                addCurrentSavingRows2.PresentAmount = value.PresentAmount;
+                addCurrentSavingRows2.Status = value.Status;
+                addCurrentSavingRows.push(addCurrentSavingRows2);
+            });
+
+            ShowOnTableCurrentSaving();
+
+        }
+
+    function ShowOtherBankEdit(data) {
+        $.each(data.otherBankData, function (index, value) {
+            var addOtherBankRows2 = { NameofOtherBank: '', LoanAmount: '', ExceptLoanDate: '', ExpireLoanDate: 0, PresentLoanAmount: '' }
+            addOtherBankRows2.NameofOtherBank = value.NameofOtherBank;
+            addOtherBankRows2.LoanAmount = value.LoanAmount;
+
+            var ExceptLoanDate = (moment(value.ExceptLoanDate).format("DD-MM-YYYY"));
+            var ExpireLoanDate = (moment(value.ExpireLoanDate).format("DD-MM-YYYY"));
+
+            addOtherBankRows2.ExceptLoanDate = ExceptLoanDate;
+            addOtherBankRows2.ExpireLoanDate = ExpireLoanDate;
+            addOtherBankRows2.PresentLoanAmount = value.PresentLoanAmount;
+            addOtherBankRows.push(addOtherBankRows2);
+        });
+
+        ShowOnOtherBank();
+
+    }
+
+
+        function ShowTrInvestmentDataEdit(data) {
+
+            $.each(data.trInvestmentData, function (index, value) {
+                //$("#TRDate").val();
+                if (value.TRDate != null) {
+                    var TRDate = (moment(value.TRDate).format("DD-MM-YYYY"));
+                    $('#TRDate').datepicker('setDate', TRDate);
+                    $('#TRDate').prop('disabled', true);
+
+                } else {
+                    $("#TRDate").val("");
+                }
+                var addTRInvestmentRows2 = { TRDate: '', SlNo: '', ProductDescription: '', QTY: '', Buyamount: 0, TRSalesAmount: 0, MinimumProfit: 0 }
+                addTRInvestmentRows2.TRDate = value.TRDate;
+                addTRInvestmentRows2.SlNo = value.SlNo;
+                addTRInvestmentRows2.ProductDescription = value.ProductDescription;
+                addTRInvestmentRows2.QTY = value.QTY;
+                addTRInvestmentRows2.Buyamount = value.Buyamount;
+                addTRInvestmentRows2.TRSalesAmount = value.TRSalesAmount;
+                addTRInvestmentRows2.MinimumProfit = value.MinimumProfit;
+                addTRInvestmentRows.push(addTRInvestmentRows2);
+            });
+
+            ShowOnTableTRInvestment();
+        }
+        function ShowRetentionDataEdit(data) {
+            $.each(data.RetentionData, function (index, value) {
+                var addRetentionPropertyRows2 = { RetentionDescription: '', MoujaName: '', DocumentNo: '', LedgerNo: '', StainsNo: '', LandAmount: '', MinimumPrice: 0 }
+                addRetentionPropertyRows2.RetentionDescription = value.RetentionDescription;
+                addRetentionPropertyRows2.MoujaName = value.MoujaName;
+                addRetentionPropertyRows2.DocumentNo = value.DocumentNo;
+                addRetentionPropertyRows2.LedgerNo = value.LedgerNo;
+                addRetentionPropertyRows2.StainsNo = value.StainsNo;
+                addRetentionPropertyRows2.LandAmount = value.LandAmount;
+                addRetentionPropertyRows2.MinimumPrice = value.MinimumPrice;
+                addRetentionPropertyRows.push(addRetentionPropertyRows2);
+            });
+
+            ShowOnTableRetention();
+            
+        }
+
+
+    function ShowGuarantorEdit(data) {
+        var i=0;
+        $.each(data.GurantarData, function (index, value) {
+            if (i == 0) {
+                $("#GuarantorName").val(value.GuarantorName);
+
+
+                if (value.GuarantorDateofBirth !=null) {
+                    var GuarantorDateofBirth = (moment(value.GuarantorDateofBirth).format("DD-MM-YYYY"));
+                    $('#GuarantorDateofBirth').datepicker('setDate', GuarantorDateofBirth);
+                } else {
+
+                    $('#GuarantorDateofBirth').val("");
+                }
+
+                if (value.FilePath != null) {
+                    $("#sample_img").attr('src', value.FilePath);
+                }
+
+
+                $("#GuarantorFather").val(value.GuarantorFather);
+                $("#GuarantorMother").val(value.GuarantorMother);
+                $("#GuarantorPO").val(value.GuarantorPO);
+                $("#GuarantorPS").val(value.GuarantorPS);
+                $("#GuarantorPermanentDistrict").val(value.GuarantorPermanentDistrict);
+                $("#GuarantorPresentAddress").val(value.GuarantorPresentAddress);
+                $("#GuarantorBusinessAddress").val(value.GuarantorBusinessAddress);
+                $("#GuarantorNID").val(value.GuarantorNID);
+                $("#GuarantorPhone").val(value.GuarantorPhone);
+                $("#GuarantorRelation").val(value.GuarantorRelation);
+                $("#GuarantorOccupation").val(value.GuarantorOccupation);
+                $("#GuarantorDmcbSavingName").val(value.GuarantorDmcbSavingName);
+                $("#GuarantorDmcbSavingAmount").val(value.GuarantorDmcbSavingAmount);
+                $("#GuarantorDmcbLoanName").val(value.GuarantorDmcbLoanName);
+                $("#GuarantorDmcbLoanAmount").val(value.GuarantorDmcbLoanAmount);
+                $("#GuarantorInstallmentAmount").val(value.GuarantorInstallmentAmount);
+                $("#GuarantorSignature").val(value.GuarantorSignature);
+
+            } else {
+
+                if (value.FilePath != null) {
+                    $("#sample_img"+i).attr('src', value.FilePath);
+                }
+
+                $("#GuarantorName" + i).val(value.GuarantorName);
+                if (value.GuarantorDateofBirth != null) {
+                    var GuarantorDateofBirth = (moment(value.GuarantorDateofBirth).format("DD-MM-YYYY"));
+                    $('#GuarantorDateofBirth'+i).datepicker('setDate', GuarantorDateofBirth);
+                } else {
+
+                    $('#GuarantorDateofBirth'+i).val("");
+                }
+
+                $("#GuarantorFather" + i).val(value.GuarantorFather);
+                $("#GuarantorMother" + i).val(value.GuarantorMother);
+                $("#PermanentVillage" + i).val(value.PermanentVillage);
+                $("#GuarantorPO" + i).val(value.GuarantorPO);
+                $("#GuarantorPS" + i).val(value.GuarantorPS);
+                $("#GuarantorPermanentDistrict" + i).val(value.GuarantorPermanentDistrict);
+                $("#GuarantorPresentAddress" + i).val(value.GuarantorPresentAddress);
+                $("#GuarantorBusinessAddress" + i).val(value.GuarantorBusinessAddress);
+                $("#GuarantorNID" + i).val(value.GuarantorNID);
+                $("#GuarantorPhone" + i).val(value.GuarantorPhone);
+                $("#GuarantorRelation" + i).val(value.GuarantorRelation);
+                $("#GuarantorOccupation" + i).val(value.GuarantorOccupation);
+                $("#GuarantorDmcbSavingName" + i).val(value.GuarantorDmcbSavingName);
+                $("#GuarantorDmcbSavingAmount" + i).val(value.GuarantorDmcbSavingAmount);
+                $("#GuarantorDmcbLoanName" + i).val(value.GuarantorDmcbLoanName);
+                $("#GuarantorDmcbLoanAmount" + i).val(value.GuarantorDmcbLoanAmount);
+                $("#GuarantorInstallmentAmount" + i).val(value.GuarantorInstallmentAmount);
+                $("#GuarantorSignature" + i).val(value.GuarantorSignature);
+            }
+
+            i++;
+
+
+            });
+        }
+
+
+
+
+        //End Edit Search
+
+        $("#Image").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        });
+        var ReadImage = function (file) {
+
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+
+                image.src = _file.target.result;
+                image.onload = function () {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = (file.size / 1024) + "KB";
+                    console.log(size);
+                    $("#CustomerImage").attr('src', _file.target.result);
+                    // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    //$("#imgPreview").show();
+
+                }
+
+            }
+
+        }
+
+        $("#GuarantorPic").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage1(File[0]);
+            }
+
+        });
+        var ReadImage1 = function (file) {
+
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+
+                image.src = _file.target.result;
+                image.onload = function () {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = (file.size / 1024) + "KB";
+                    console.log(size);
+                    $("#sample_img").attr('src', _file.target.result);
+                    // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    //$("#imgPreview").show();
+
+                }
+
+            }
+
+        }
+        $("#GuarantorPic1").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage2(File[0]);
+            }
+
+        });
+        var ReadImage2 = function (file) {
+
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+
+                image.src = _file.target.result;
+                image.onload = function () {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = (file.size / 1024) + "KB";
+                    console.log(size);
+                    $("#sample_img1").attr('src', _file.target.result);
+                    // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    //$("#imgPreview").show();
+
+                }
+
+            }
+
+        }
+        $("#GuarantorPic2").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage3(File[0]);
+            }
+
+        });
+        var ReadImage3 = function (file) {
+
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+
+                image.src = _file.target.result;
+                image.onload = function () {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = (file.size / 1024) + "KB";
+                    console.log(size);
+                    $("#sample_img2").attr('src', _file.target.result);
+                    // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    //$("#imgPreview").show();
+
+                }
+
+            }
+
+        }
+
+
+
+      var isValid = true;
+        $(document).on('click', '#save', function () {
+            isValid = true;
+
+            onSaveValidation();
+            SetMemberLoanInfoData();
+            if (isValid == true) {
+                addGuarantor();
+                var associationSupport = {
+
+                    MemberLoanInfo: MemberLoanInfo,
+                    CurrentSaving: addCurrentSavingRows,
+                    OtherBank: addOtherBankRows,
+                    RetentionProperty: addRetentionPropertyRows,
+                    TRInvestment: addTRInvestmentRows,
+                    BiMudaraba: addBiMudarabaRows,
+                    Guarantor: addGuarantorRows
+
+                };
+
+                var formData = new FormData();
+                //var files = $("#file").get(0).files;
+                var file = $("#Image").get(0).files;
+                var file1 = $("#GuarantorPic").get(0).files;
+                var file2 = $("#GuarantorPic1").get(0).files;
+                var file3 = $("#GuarantorPic2").get(0).files;
+
+                if (file.length > 0) {
+                    formData.append("file", file[0]);
+
+
+                }
+                if (file1.length > 0) {
+                    formData.append("file1", file1[0]);
+
+                }
+                if (file2.length > 0) {
+                    formData.append("file2", file2[0]);
+
+                }
+                if (file3.length > 0) {
+                    formData.append("file3", file3[0]);
+                }
+                formData.append("json", JSON.stringify(associationSupport));
+
+                if (confirm('Do you want to save?')) {
+
+                    //setDataforImage();
+                    $.ajax({
+                        type:"Post",
+                        url: '@Url.Action("Edit", "LoanEntry")',
+                        data: formData,
+                        contentType: false,
+                        processData:false,
+                        success: function (datas) {
+                            if (datas == 1) {
+                                alert("Successfully saved.");
+                                location.reload();
+                                //$("#save2").click();
+                            }
+                            else {
+                                alert("Allready saved");
+                                //location.reload();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
+        function onSaveValidation() {
+            if ($("#NID").val() == undefined || $("#NID").val() == null || $("#NID").val() == "") {
+                setError("NID", "Required Field");
+                isValid = false;
+            }
+            if ($("#MemberNo").val() == undefined || $("#MemberNo").val() == null || $("#MemberNo").val() == "") {
+                setError("MemberNo", "Required Field");
+                isValid = false;
+            }
+
+        }
+
+
+        function setError(name, message) {
+            RemoveError();
+            $('#' + name).after('<div id="error" class="red"><p style="color:red">' + message + '</p></div >');
+        }
+
+        function RemoveError() {
+
+            var element = document.getElementById("error");
+            if (element == null) {
+
+            }
+            else {
+                element.parentNode.removeChild(element);
+            }
+        }
+
+
+
+        //change function
+
+        $("#b1").click(function () {
+
+            $("#custom-tabs-four-profile-tab").click();
+        });
+
+        $("#b2").click(function () {
+
+            $("#custom-tabs-four-messages-tab").click();
+        });
+
+        $("#b3").click(function () {
+
+            $("#custom-tabs-four-settings-tab").click();
+        });
+
+
+        //loan entry
+
+        var MemberLoanInfo = { MID: 0, ApprovalNo: '', Date: '', MemberNo: '', ShareNumber: '', ShareAmount: 0, FieldNo: '', LoanNo: '', SoftwareLoanNo: '', InvestmentNo: '', BranchCode: '', Amount: 0, AplicantName: '', DateofBirth: '', FatherName: '', MotherName: '', NID: '', Village: '', PO: '', PS: '', District: '', PresentAddress: '', BusinessAddress: '', PhoneNumber: '', MobileNumber: '', Email: '', BusinessNature: '', BusinessType: '', MotiveofLoan: '', DateOwn: '', DateRent: '', LastDate: '', AmountRent: 0, NameRent: '', OwnAmount: 0, MonthlyAvarageIncome: 0, MLFile: '', DailySaleAmount: 0, DailyProfit: 0, DailyIncome: 0, MonthlySaleAmount: 0, MonthlyProfit: 0, MonthlyIncome: 0, AmountInAccount: 0, MAccountNo: 0, LoanAmountTotal: 0, LoanInstallmentAmount: 0, LoanInstallment: '', LoanRecoveryDays: 0, LoanProvideDate: '', LoanType: '', LoanSubType: '', LoanInstallmentType: '', DailySavingType: '', DefalterBokeya: 0, DefalterStithi: 0, FormID: 0, DailySaving: 0, DailySaving2: 0, DailySavingYear: 0, shikkhabibahDuration: 0, MonthlySavingAmount: 0, MonthlySavingAmountYear: 0}
+
+        function SetMemberLoanInfoData() {
+            MemberLoanInfo.ApprovalNo = $("#ApprovalNo").val();
+            MemberLoanInfo.Date = $("#Date").val();
+            MemberLoanInfo.MemberNo = $("#MemberNo").val();
+            MemberLoanInfo.ShareNumber = $("#ShareNumber").val();
+            MemberLoanInfo.ShareAmount = parseFloat($("#ShareAmount").val());
+            MemberLoanInfo.FieldNo = $("#FieldNo").val();
+            MemberLoanInfo.LoanNo = $("#LoanNo").val();
+            MemberLoanInfo.SoftwareLoanNo = $("#SoftwareLoanNo").val();
+            MemberLoanInfo.InvestmentNo = $("#InvestmentNo").val();
+            MemberLoanInfo.BranchCode = $("#BranchCode").val();
+            MemberLoanInfo.Amount = $("#Amount").val();
+            //MemberLoanInfo.ContractualDate = $("#ContractualDate").val();
+            MemberLoanInfo.AplicantName = $("#AplicantName").val();
+            MemberLoanInfo.DateofBirth = $("#DateofBirth").val();
+            MemberLoanInfo.FatherName = $("#FatherName").val();
+            MemberLoanInfo.MotherName = $("#MotherName").val();
+            MemberLoanInfo.NID = parseInt($("#NID").val());
+            MemberLoanInfo.Village = $("#Village").val();
+            MemberLoanInfo.PO = $("#PO").val();
+            MemberLoanInfo.PS = $("#PS").val();
+            MemberLoanInfo.District = $("#District").val();
+            MemberLoanInfo.PresentAddress = $("#PresentAddress").val();
+            MemberLoanInfo.BusinessAddress = $("#BusinessAddress").val();
+            MemberLoanInfo.PhoneNumber = $("#PhoneNumber").val();
+            MemberLoanInfo.MobileNumber = $("#MobileNumber").val();
+            MemberLoanInfo.Email = $("#Email").val();
+            MemberLoanInfo.BusinessNature = $("#BusinessNature").val();
+            MemberLoanInfo.BusinessType = $("#BusinessType").val();
+            MemberLoanInfo.MotiveofLoan = $("#MotiveofLoan").val();
+            MemberLoanInfo.DateOwn = $("#DateOwn").val();
+            MemberLoanInfo.DateRent = $("#DateRent").val();
+
+            if ($("#LastDate").val() != "") {
+                MemberLoanInfo.LastDate = $("#LastDate").val();
+            } else {
+                MemberLoanInfo.LastDate = $("#LastDate2").val();
+            }
+
+
+            MemberLoanInfo.AmountRent = parseFloat($("#AmountRent").val());
+
+            if ($("#NameRent").val() != "") {
+                MemberLoanInfo.NameRent = $("#NameRent").val();
+            } else {
+                MemberLoanInfo.NameRent = $("#NameRent2").val();
+            }
+            //MemberLoanInfo.StockAmount = $("#StockAmount").val();
+            MemberLoanInfo.OwnAmount = parseFloat($("#OwnAmount").val());
+            MemberLoanInfo.MonthlyAvarageIncome = parseFloat($("#MonthlyAvarageIncome").val());
+            MemberLoanInfo.MLFile = $("#MLFile").val();
+            MemberLoanInfo.DailySaleAmount = parseFloat($("#DailySaleAmount").val());
+            MemberLoanInfo.DailyProfit = parseFloat($("#DailyProfit").val());
+            MemberLoanInfo.DailyIncome = parseFloat($("#DailyIncome").val());
+            MemberLoanInfo.MonthlySaleAmount = parseFloat($("#MonthlySaleAmount").val());
+            MemberLoanInfo.MonthlyProfit = parseFloat($("#MonthlyProfit").val());
+            MemberLoanInfo.MonthlyIncome = parseFloat($("#MonthlyIncome").val());
+            MemberLoanInfo.AmountInAccount = parseFloat($("#AmountInAccount").val());
+            MemberLoanInfo.MAccountNo = $("#MAccountNo").val();
+            MemberLoanInfo.LoanAmountTotal = parseFloat($("#LoanAmountTotal").val());
+            MemberLoanInfo.LoanInstallmentAmount = parseFloat($("#LoanInstallmentAmount").val());
+
+
+
+            //MemberLoanInfo.Installment = $("#Installment").val();
+            MemberLoanInfo.LoanInstallment = $("#LoanInstallment").val();
+            MemberLoanInfo.LoanRecoveryDays = $("#LoanRecoveryDays").val();
+            MemberLoanInfo.LoanProvideDate = $("#LoanProvideDate").val();
+
+
+
+            MemberLoanInfo.LoanType = $("#LoanType").val();
+            MemberLoanInfo.LoanSubType = $("#LoanSubType").val();
+            MemberLoanInfo.LoanInstallmentType = $("#LoanInstallmentType").val();
+            MemberLoanInfo.DailySavingType = $("#DailySavingType").val();
+            MemberLoanInfo.DefalterBokeya = $("#DefalterBokeya").val();
+            MemberLoanInfo.DefalterStithi = $("#DefalterStithi").val();
+            MemberLoanInfo.FormID = $("#FormID").val();
+
+            MemberLoanInfo.DailySaving = parseFloat($("#DailySaving").val());
+            MemberLoanInfo.DailySaving2 = parseFloat($("#DailySaving2").val());
+            MemberLoanInfo.DailySavingYear = parseInt($("#DailySavingYear").val());
+            MemberLoanInfo.shikkhabibahDuration = parseInt($("#shikkhabibahDuration").val());
+            MemberLoanInfo.MonthlySavingAmount = parseFloat($("#MonthlySavingAmount").val());
+            MemberLoanInfo.MonthlySavingAmountYear = parseInt($("#MonthlySavingAmountYear").val());
+
+
+        }
+
+
+
+        var addTRInvestmentRows = [];
+        function addTRInvestment() {
+            if (validateTRInvestment()) {
+                var bool = true;
+                var addTRInvestmentRows2 = { TRDate: '', SlNo: '', ProductDescription: '', QTY: '', Buyamount: 0, TRSalesAmount: 0, MinimumProfit: '' }
+                addTRInvestmentRows2.TRDate = $("#TRDate").val();
+                addTRInvestmentRows2.SlNo = $("#SlNo").val();
+                addTRInvestmentRows2.ProductDescription = $("#ProductDescription").val();
+                addTRInvestmentRows2.QTY = $("#QTY").val();
+                addTRInvestmentRows2.Buyamount = parseFloat($("#Buyamount").val());
+                addTRInvestmentRows2.TRSalesAmount = parseFloat($("#TRSalesAmount").val());
+                addTRInvestmentRows2.MinimumProfit = $("#MinimumProfit").val();
+
+
+                $.each(addTRInvestmentRows, function (index, value) {
+                    if (value.SlNo == addTRInvestmentRows2.SlNo) {
+                        bool = false;
+                    }
+                });
+
+                if (bool == true) {
+                    addTRInvestmentRows.push(addTRInvestmentRows2);
+                    $("#TRDate").prop("disabled", true);
+                    ClearOnPushTRInvestment();
+                } else {
+                    alert("Already added");
+                }
+                ShowOnTableTRInvestment();
+            }
+
+        }
+
+        function ShowOnTableTRInvestment() {
+            TRInvestmentTBL.clear().draw();
+            $.each(addTRInvestmentRows, function (index, value) {
+                TRInvestmentTBL.row.add([value.SlNo, value.ProductDescription, value.QTY, value.Buyamount, value.TRSalesAmount, value.MinimumProfit]).draw();
+            });
+
+        }
+
+        function validateTRInvestment() {
+            var isValid = true;
+            RemoveError();
+            if ($("#TRDate").val() == null || $("#TRDate").val() == "") {
+                setError("TRDate", "Required Field");
+
+                isValid = false;
+            }
+            if ($("#QTY").val() == null || $("#QTY").val() == "") {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function deleteTRInvestment() {
+
+                addTRInvestmentRows.pop();
+                var table = document.getElementById('TRInvestment');
+                var rowCount = table.rows.length;
+                if (rowCount > '2') {
+                    var row = table.deleteRow(rowCount - 2);
+                    rowCount--;
+                    if (addTRInvestment.length == 0) {
+                         $("#TRDate").prop("disabled", false);
+                    }
+                }
+                else {
+                    alert('There should be atleast one row');
+                }
+
+
+        }
+
+
+        function ClearOnPushTRInvestment() {
+            $("#SlNo").val("");
+            $("#ProductDescription").val("");
+            $("#QTY").val("");
+            $("#Buyamount").val("");
+            $("#TRSalesAmount").val("");
+            $("#MinimumProfit").val("");
+        }
+
+
+
+
+        var addRetentionPropertyRows = [];
+        function addRetention() {
+            if (validateRetention()) {
+                var bool = true;
+                var addRetentionPropertyRows2 = { RetentionDescription: '', MoujaName: '', DocumentNo: '', LedgerNo: '', StainsNo: '', LandAmount: '', MinimumPrice: 0 }
+                addRetentionPropertyRows2.RetentionDescription = $("#RetentionDescription").val();
+                addRetentionPropertyRows2.MoujaName = $("#MoujaName").val();
+                addRetentionPropertyRows2.DocumentNo = $("#DocumentNo").val();
+                addRetentionPropertyRows2.LedgerNo = $("#LedgerNo").val();
+                addRetentionPropertyRows2.StainsNo = $("#StainsNo").val();
+                addRetentionPropertyRows2.LandAmount = $("#LandAmount").val();
+                addRetentionPropertyRows2.MinimumPrice = parseFloat($("#MinimumPrice").val());
+
+
+                $.each(addRetentionPropertyRows, function (index, value) {
+                    if (value.MoujaName == addRetentionPropertyRows2.MoujaName) {
+                        bool = false;
+                    }
+                });
+
+                if (bool == true) {
+                    addRetentionPropertyRows.push(addRetentionPropertyRows2);
+                    ClearOnPushRetentionProperty();
+                } else {
+                    alert("Already added");
+                }
+
+                ShowOnTableRetention();
+
+            }
+
+        }
+
+        function ShowOnTableRetention() {
+            RetentionPropertyTBL.clear().draw();
+            $.each(addRetentionPropertyRows, function (index, value) {
+                RetentionPropertyTBL.row.add([value.RetentionDescription, value.MoujaName, value.DocumentNo, value.LedgerNo, value.StainsNo, value.LandAmount, value.MinimumPrice]).draw();
+            });
+        }
+
+
+        function validateRetention() {
+            var isValid = true;
+
+            if ($("#RetentionDescription").val() == null || $("#RetentionDescription").val() == "") {
+                isValid = false;
+            }
+            if ($("#MoujaName").val() == null || $("#MoujaName").val() == "") {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+
+        function deleteRetention() {
+            addRetentionPropertyRows.pop();
+            var table = document.getElementById('Retention');
+            var rowCount = table.rows.length;
+            if (rowCount > '2') {
+                var row = table.deleteRow(rowCount - 2);
+                rowCount--;
+            }
+            else {
+                alert('There should be atleast one row');
+            }
+        }
+
+
+        function ClearOnPushRetentionProperty() {
+            $("#RetentionDescription").val("");
+            $("#MoujaName").val("");
+            $("#DocumentNo").val("");
+            $("#LedgerNo").val("");
+            $("#StainsNo").val("");
+            $("#LandAmount").val("");
+            $("#MinimumPrice").val("");
+        }
+
+
+
+        var addOtherBankRows = [];
+        function addOtherBank() {
+            if (validateOtherBank()) {
+                var bool = true;
+                var addOtherBankRows2 = { NameofOtherBank: '', LoanAmount: 0.0, ExceptLoanDate: '', ExpireLoanDate: 0, PresentLoanAmount: 0 }
+                addOtherBankRows2.NameofOtherBank = $("#NameofOtherBank").val();
+                addOtherBankRows2.LoanAmount = parseFloat($("#LoanAmount").val());
+                addOtherBankRows2.ExceptLoanDate = $("#ExceptLoanDate").val();
+                addOtherBankRows2.ExpireLoanDate = $("#ExpireLoanDate").val();
+                addOtherBankRows2.PresentLoanAmount = parseFloat($("#PresentLoanAmount").val());
+
+
+                $.each(addOtherBankRows, function (index, value) {
+                    if (value.NameofOtherBank == addOtherBankRows2.NameofOtherBank) {
+                        bool = false;
+                    }
+                });
+
+                if (bool == true) {
+                    addOtherBankRows.push(addOtherBankRows2);
+                    ClearOnPushOtherBank();
+                } else {
+                    alert("Already added");
+                }
+                ShowOnOtherBank();
+            }
+
+        }
+
+
+        function ShowOnOtherBank() {
+            OtherBankTBL.clear().draw();
+            $.each(addOtherBankRows, function (index, value) {
+                OtherBankTBL.row.add([value.NameofOtherBank, value.LoanAmount, value.ExceptLoanDate, value.ExpireLoanDate, value.PresentLoanAmount]).draw();
+            });
+        }
+
+        function validateOtherBank() {
+            var isValid = true;
+
+            if ($("#NameofOtherBank").val() == null || $("#NameofOtherBank").val() == "") {
+                isValid = false;
+            }
+            if ($("#LoanAmount").val() == null || $("#LoanAmount").val() == "" || $("#LoanAmount").val() == 0) {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function deleteOtherBank() {
+            addOtherBankRows.pop();
+            var table = document.getElementById('OtherBank');
+            var rowCount = table.rows.length;
+            if (rowCount > '2') {
+                var row = table.deleteRow(rowCount - 2);
+                rowCount--;
+            }
+            else {
+                alert('There should be atleast one row');
+            }
+        }
+
+
+        function ClearOnPushOtherBank() {
+            $("#NameofOtherBank").val("");
+            $("#LoanAmount").val("");
+            $("#ExpireLoanDate").val("");
+            $("#PresentLoanAmount").val("");
+            $("#ExceptLoanDate").val("");
+        }
+
+
+        var addBiMudarabaRows = [];
+        function addBiMudaraba() {
+            if (validateBiMudaraba()) {
+                var bool = true;
+                var addBiMudarabaRows2 = { TypeofInvestment: '', DescriptionofInvestment: '', InvestmentAmount: 0, ExecptDate: '', ExpireDate: '', PresentStatus: '', OwnBussinessAsset: 0, GodownStock: 0, AverageSales: 0, AverageIncome: 0 }
+                addBiMudarabaRows2.TypeofInvestment = $("#TypeofInvestment").val();
+                addBiMudarabaRows2.DescriptionofInvestment = $("#DescriptionofInvestment").val();
+                addBiMudarabaRows2.InvestmentAmount = parseFloat($("#InvestmentAmount").val());
+                addBiMudarabaRows2.ExecptDate = $("#ExecptDate").val();
+                addBiMudarabaRows2.ExpireDate = $("#ExpireDate").val();
+                addBiMudarabaRows2.PresentStatus = $("#PresentStatus").val();
+                addBiMudarabaRows2.OwnBussinessAsset = $("#OwnBussinessAsset").val();
+                addBiMudarabaRows2.GodownStock = $("#GodownStock").val();
+                addBiMudarabaRows2.AverageSales = $("#AverageSales").val();
+                addBiMudarabaRows2.AverageIncome = $("#AverageIncome").val();
+
+
+
+                $.each(addBiMudarabaRows, function (index, value) {
+                    if (value.TypeofInvestment == addBiMudarabaRows2.TypeofInvestment) {
+                        bool = false;
+                    }
+                });
+
+                if (bool == true) {
+                    addBiMudarabaRows.push(addBiMudarabaRows2);
+                    ClearOnPushBiMudaraba();
+                } else {
+                    alert("Already added");
+                }
+
+                ShowOnTableBiMudaraba();
+            }
+
+
+        }
+        function validateBiMudaraba() {
+            var isValid = true;
+
+            if ($("#TypeofInvestment").val() == null || $("#TypeofInvestment").val() == "") {
+                isValid = false;
+            }
+            if ($("#DescriptionofInvestment").val() == null || $("#DescriptionofInvestment").val() == "") {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function ShowOnTableBiMudaraba() {
+            BiMudarabaTBL.clear().draw();
+            $.each(addBiMudarabaRows, function (index, value) {
+                BiMudarabaTBL.row.add([value.TypeofInvestment, value.DescriptionofInvestment, value.InvestmentAmount, value.ExecptDate, value.ExpireDate, value.PresentStatus, value.OwnBussinessAsset, value.GodownStock, value.AverageSales, value.AverageIncome]).draw();
+            });
+        }
+
+
+        function deleteBiMudaraba() {
+            addBiMudarabaRows.pop();
+            var table = document.getElementById('BiMudaraba');
+            var rowCount = table.rows.length;
+            if (rowCount > '2') {
+                var row = table.deleteRow(rowCount - 2);
+                rowCount--;
+            }
+            else {
+                alert('There should be atleast one row');
+            }
+        }
+
+
+        function ClearOnPushBiMudaraba() {
+            $("#TypeofInvestment").val("");
+            $("#DescriptionofInvestment").val("");
+            $("#InvestmentAmount").val("");
+            $("#ExecptDate").val("");
+            $("#ExpireDate").val("");
+            $("#PresentStatus").val("");
+            $("#OwnBussinessAsset").val("");
+            $("#GodownStock").val("");
+            $("#AverageSales").val("");
+            $("#AverageIncome").val("");
+        }
+
+
+
+
+        var addCurrentSavingRows = [];
+        function addCurrentSaving() {
+            if (validateCurrentSaving()) {
+                var bool = true;
+                var addCurrentSavingRows2 = { TypesofSavings: '', AccountNo: '', AccountopenDate: '', InstallmentAmount: 0, PresentAmount: 0, Status: '' }
+                addCurrentSavingRows2.TypesofSavings = $("#TypesofSavings").val();
+                addCurrentSavingRows2.AccountNo = $("#AccountNo").val();
+                addCurrentSavingRows2.AccountopenDate = $("#AccountopenDate").val();
+                addCurrentSavingRows2.InstallmentAmount = $("#InstallmentAmount").val();
+                addCurrentSavingRows2.PresentAmount = $("#PresentAmount").val();
+                addCurrentSavingRows2.Status = $("#Status").val();
+
+
+                $.each(addCurrentSavingRows, function (index, value) {
+                    if (value.TypesofSavings == addCurrentSavingRows2.TypesofSavings) {
+                        bool = false;
+                    }
+                });
+
+                if (bool == true) {
+                    addCurrentSavingRows.push(addCurrentSavingRows2);
+                    ClearOnPushCurrentSaving();
+                } else {
+                    alert("Already added");
+                }
+                ShowOnTableCurrentSaving();
+            }
+        }
+
+
+
+        function validateCurrentSaving() {
+            var isValid = true;
+
+            if ($("#TypesofSavings").val() == null || $("#TypesofSavings").val() == "") {
+                isValid = false;
+            }
+            if ($("#AccountNo").val() == null || $("#AccountNo").val() == "") {
+                isValid = false;
+            }
+            return isValid;
+        }
+        function ShowOnTableCurrentSaving() {
+            CurrentSavingTBL.clear().draw();
+            $.each(addCurrentSavingRows, function (index, value) {
+                CurrentSavingTBL.row.add([value.TypesofSavings, value.AccountNo, value.AccountopenDate, value.InstallmentAmount, value.PresentAmount, value.Status]).draw();
+            });
+        }
+
+
+        function deleteCurrentSaving() {
+            addCurrentSavingRows.pop();
+            var table = document.getElementById('CurrentSaving');
+            var rowCount = table.rows.length;
+            if (rowCount > '2') {
+                var row = table.deleteRow(rowCount - 2);
+                rowCount--;
+            }
+            else {
+                alert('There should be atleast one row');
+            }
+        }
+
+
+        function ClearOnPushCurrentSaving() {
+            $("#TypesofSavings").val("");
+            $("#AccountNo").val("");
+            $("#AccountopenDate").val("");
+            $("#InstallmentAmount").val("");
+            $("#PresentAmount").val("");
+            $("#Status").val("");
+        }
+
+        var addGuarantorRows = [];
+        function addGuarantor() {
+            debugger;
+            var bool = true;
+            var addGuarantorRows2 = { LoanNo: '', GuarantorName: '', GuarantorDateofBirth: '', GuarantorFather: '', GuarantorMother: '', PermanentVillage: '', GuarantorPO: '', GuarantorPS: '', GuarantorPermanentDistrict: '', GuarantorPresentAddress: '', GuarantorBusinessAddress: '', GuarantorNID: '', GuarantorPhone: '', GuarantorRelation: '', GuarantorOccupation: '', GuarantorDmcbSavingName: '', GuarantorDmcbSavingAmount: 0, GuarantorDmcbLoanName: '', GuarantorDmcbLoanAmount: 0, GuarantorInstallmentAmount: 0, GuarantorSignature: '' }
+            addGuarantorRows2.LoanNo = $("#LoanNo").val();
+            addGuarantorRows2.GuarantorName = $("#GuarantorName").val();
+            addGuarantorRows2.GuarantorDateofBirth = $("#GuarantorDateofBirth").val();
+            addGuarantorRows2.GuarantorFather = $("#GuarantorFather").val();
+            addGuarantorRows2.GuarantorMother = $("#GuarantorMother").val();
+            addGuarantorRows2.PermanentVillage = $("#PermanentVillage").val();
+            addGuarantorRows2.GuarantorPO = $("#GuarantorPO").val();
+            addGuarantorRows2.GuarantorPS = $("#GuarantorPS").val();
+            addGuarantorRows2.GuarantorPermanentDistrict = $("#GuarantorPermanentDistrict").val();
+            addGuarantorRows2.GuarantorPresentAddress = $("#GuarantorPresentAddress").val();
+            addGuarantorRows2.GuarantorBusinessAddress = $("#GuarantorBusinessAddress").val();
+            addGuarantorRows2.GuarantorNID = $("#GuarantorNID").val();
+            addGuarantorRows2.GuarantorPhone = $("#GuarantorPhone").val();
+            addGuarantorRows2.GuarantorRelation = $("#GuarantorRelation").val();
+            addGuarantorRows2.GuarantorOccupation = $("#GuarantorOccupation").val();
+            addGuarantorRows2.GuarantorDmcbSavingName = $("#GuarantorDmcbSavingName").val();
+            addGuarantorRows2.GuarantorDmcbSavingAmount = parseFloat($("#GuarantorDmcbSavingAmount").val());
+            addGuarantorRows2.GuarantorDmcbLoanName = $("#GuarantorDmcbLoanName").val();
+            addGuarantorRows2.GuarantorDmcbLoanAmount = parseFloat($("#GuarantorDmcbLoanAmount").val());
+            addGuarantorRows2.GuarantorInstallmentAmount = parseFloat($("#GuarantorInstallmentAmount").val());
+            addGuarantorRows2.GuarantorSignature = $("#GuarantorSignature").val();
+
+            addGuarantorRows.push(addGuarantorRows2);
+
+
+            var addGuarantorRows3 = { LoanNo: '', GuarantorName: '', GuarantorDateofBirth: '', GuarantorFather: '', GuarantorMother: '', PermanentVillage: '', GuarantorPO: '', GuarantorPS: '', GuarantorPermanentDistrict: '', GuarantorPresentAddress: '', GuarantorBusinessAddress: '', GuarantorNID: '', GuarantorPhone: '', GuarantorRelation: '', GuarantorOccupation: '', GuarantorDmcbSavingName: '', GuarantorDmcbSavingAmount: 0, GuarantorDmcbLoanName: '', GuarantorDmcbLoanAmount: 0, GuarantorInstallmentAmount: 0, GuarantorSignature: '' }
+            addGuarantorRows3.LoanNo = $("#LoanNo").val();
+            addGuarantorRows3.GuarantorName = $("#GuarantorName1").val();
+            addGuarantorRows3.GuarantorDateofBirth = $("#GuarantorDateofBirth1").val();
+            addGuarantorRows3.GuarantorFather = $("#GuarantorFather1").val();
+            addGuarantorRows3.GuarantorMother = $("#GuarantorMother1").val();
+            addGuarantorRows3.PermanentVillage = $("#PermanentVillage1").val();
+            addGuarantorRows3.GuarantorPO = $("#GuarantorPO1").val();
+            addGuarantorRows3.GuarantorPS = $("#GuarantorPS1").val();
+            addGuarantorRows3.GuarantorPermanentDistrict = $("#GuarantorPermanentDistrict1").val();
+            addGuarantorRows3.GuarantorPresentAddress = $("#GuarantorPresentAddress1").val();
+            addGuarantorRows3.GuarantorBusinessAddress = $("#GuarantorBusinessAddress1").val();
+            addGuarantorRows3.GuarantorNID = $("#GuarantorNID1").val();
+            addGuarantorRows3.GuarantorPhone = $("#GuarantorPhone1").val();
+            addGuarantorRows3.GuarantorRelation = $("#GuarantorRelation1").val();
+            addGuarantorRows3.GuarantorOccupation = $("#GuarantorOccupation1").val();
+            addGuarantorRows3.GuarantorDmcbSavingName = $("#GuarantorDmcbSavingName1").val();
+            addGuarantorRows3.GuarantorDmcbSavingAmount = parseFloat($("#GuarantorDmcbSavingAmount1").val());
+            addGuarantorRows3.GuarantorDmcbLoanName = $("#GuarantorDmcbLoanName1").val();
+            addGuarantorRows3.GuarantorDmcbLoanAmount = parseFloat($("#GuarantorDmcbLoanAmount1").val());
+            addGuarantorRows3.GuarantorInstallmentAmount = parseFloat($("#GuarantorInstallmentAmount1").val());
+            addGuarantorRows3.GuarantorSignature = $("#GuarantorSignature1").val();
+            addGuarantorRows.push(addGuarantorRows3);
+
+
+            var addGuarantorRows4 = { LoanNo: '', GuarantorName: '', GuarantorDateofBirth: '', GuarantorFather: '', GuarantorMother: '', PermanentVillage: '', GuarantorPO: '', GuarantorPS: '', GuarantorPermanentDistrict: '', GuarantorPresentAddress: '', GuarantorBusinessAddress: '', GuarantorNID: '', GuarantorPhone: '', GuarantorRelation: '', GuarantorOccupation: '', GuarantorDmcbSavingName: '', GuarantorDmcbSavingAmount: 0, GuarantorDmcbLoanName: '', GuarantorDmcbLoanAmount: 0, GuarantorInstallmentAmount: 0, GuarantorSignature: '' }
+            addGuarantorRows4.LoanNo = $("#LoanNo").val();
+            addGuarantorRows4.GuarantorName = $("#GuarantorName2").val();
+            addGuarantorRows4.GuarantorDateofBirth = $("#GuarantorDateofBirth2").val();
+            addGuarantorRows4.GuarantorFather = $("#GuarantorFather2").val();
+            addGuarantorRows4.GuarantorMother = $("#GuarantorMother2").val();
+            addGuarantorRows4.PermanentVillage = $("#PermanentVillage2").val();
+            addGuarantorRows4.GuarantorPO = $("#GuarantorPO2").val();
+            addGuarantorRows4.GuarantorPS = $("#GuarantorPS2").val();
+            addGuarantorRows4.GuarantorPermanentDistrict = $("#GuarantorPermanentDistrict2").val();
+            addGuarantorRows4.GuarantorPresentAddress = $("#GuarantorPresentAddress2").val();
+            addGuarantorRows4.GuarantorBusinessAddress = $("#GuarantorBusinessAddress2").val();
+            addGuarantorRows4.GuarantorNID = $("#GuarantorNID2").val();
+            addGuarantorRows4.GuarantorPhone = $("#GuarantorPhone2").val();
+            addGuarantorRows4.GuarantorRelation = $("#GuarantorRelation2").val();
+            addGuarantorRows4.GuarantorOccupation = $("#GuarantorOccupation2").val();
+            addGuarantorRows4.GuarantorDmcbSavingName = $("#GuarantorDmcbSavingName2").val();
+            addGuarantorRows4.GuarantorDmcbSavingAmount = parseFloat($("#GuarantorDmcbSavingAmount2").val());
+            addGuarantorRows4.GuarantorDmcbLoanName = $("#GuarantorDmcbLoanName2").val();
+            addGuarantorRows4.GuarantorDmcbLoanAmount = parseFloat($("#GuarantorDmcbLoanAmount2").val());
+            addGuarantorRows4.GuarantorInstallmentAmount = parseFloat($("#GuarantorInstallmentAmount2").val());
+            addGuarantorRows4.GuarantorSignature = $("#GuarantorSignature2").val();
+            addGuarantorRows.push(addGuarantorRows4);
+
+        }
+
+
+        //end
+
+</script>
+}

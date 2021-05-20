@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LoanDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VBranchLimits" EntityType="LoanDBModel.VBranchLimit" />
+    <EntitySet Name="VPendingLists" EntityType="LoanDBModel.VPendingList" />
+    <EntitySet Name="VMemberLoans" EntityType="LoanDBModel.VMemberLoan" />
+    <EntitySet Name="VForwardPendingLists" EntityType="LoanDBModel.VForwardPendingList" />
+  </EntityContainer>
+  <EntityType Name="VBranchLimit">
+    <Key>
+      <PropertyRef Name="BrLimit" />
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="LimitID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VPendingList">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+      <PropertyRef Name="LimitID" />
+      <PropertyRef Name="BrLimit" />
+    </Key>
+    <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+    <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FormID" Type="Int32" Nullable="false" />
+    <Property Name="LimitID" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VMemberLoan">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+    </Key>
+    <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApprovalNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="MemberNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShareNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShareAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvestmentNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+    <Property Name="FatherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PresentAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessNature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MotiveofLoan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DateOwn" Type="DateTime" Precision="3" />
+    <Property Name="DateRent" Type="DateTime" Precision="3" />
+    <Property Name="AmountRent" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NameRent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OwnAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MLFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoanNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LastDate" Type="DateTime" Precision="3" />
+    <Property Name="MonthlyAvarageIncome" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DailySaleAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DailyProfit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DailyIncome" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlySaleAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlyProfit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlyIncome" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MAccountNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AmountInAccount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LoanRecoveryDays" Type="Int32" />
+    <Property Name="LoanProvideDate" Type="DateTime" Precision="3" />
+    <Property Name="LoanInstallmentAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LoanInstallment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoftwareLoanNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FieldNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BiMudaraba_BIID" Type="Int32" />
+    <Property Name="CurrentSaving_CUID" Type="Int32" />
+    <Property Name="Guarantor_GID" Type="Int32" />
+    <Property Name="OtherBank_OID" Type="Int32" />
+    <Property Name="RetentionProperty_JID" Type="Int32" />
+    <Property Name="TRInvestment_TID" Type="Int32" />
+    <Property Name="FormID" Type="Int32" Nullable="false" />
+    <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VForwardPendingList">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+      <PropertyRef Name="LimitID" />
+      <PropertyRef Name="BrLimit" />
+    </Key>
+    <Property Name="BranchCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="AplicantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+    <Property Name="NID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoanAmountTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FormID" Type="Int32" Nullable="false" />
+    <Property Name="LimitID" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BrLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

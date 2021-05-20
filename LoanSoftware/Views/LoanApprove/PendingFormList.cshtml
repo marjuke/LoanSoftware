@@ -1,0 +1,309 @@
+﻿@model LoanSoftware.Models.LoanModel.ViewModel.PendingListVM
+
+@{
+    ViewBag.Title = "List";
+
+}
+
+<style>
+
+.modal-dialog {
+    max-width: 800px;
+}
+</style>
+
+<link href="~/Content/LoanCSS.css" rel="stylesheet" />
+<div class="" card card-primary card-outline card-outline-tabs">
+    <div class="card-body">
+        <table class="table table-bordered table-striped" id="tbl">
+            <thead>
+                <tr>
+                    <th>
+                        SL
+                    </th>
+                    <th>
+                        Form No
+                    </th>
+
+                    <th>
+                        Branch Code
+                    </th>
+                    <th>
+                        Branch Name
+                    </th>
+
+                    <th>
+                        Aplicant Name
+                    </th>
+
+                    <th>
+                        Loan Amount
+                    </th>
+
+
+                    <th width="188">Action</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Approval Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ApprovalNo, "অনুমোদন নং", htmlAttributes: new { @class = "col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ApprovalNo, new { htmlAttributes = new { @class = "form-control ant-input" } })
+                    </div>
+                    
+
+                </div>
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.SoftwareLoanNo, "সফটওয়্যার হিসাব নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                    <div class="col-md-8">
+                        @*  @Html.EditorFor(model => model.LoanNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="SoftwareLoanNo" class="ant-input form-control" type="text" value="@ViewBag.softwarenumber" readonly>
+                        @Html.ValidationMessageFor(model => model.SoftwareLoanNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.LoanNo, "ঋণ / বিনিয়োগ হিসাব নম্বর", htmlAttributes: new { @class = "col-md-4" })
+                    <div class="col-md-8">
+                        @*  @Html.EditorFor(model => model.LoanNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="LoanNo" class="ant-input form-control" type="text" placeholder="XXX-XX-X">
+                        @Html.ValidationMessageFor(model => model.LoanNo, "", new { @class = "text-danger", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="save" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="FormID" value="" hidden />
+
+
+@section Scripts{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+<script>
+        //$("#tbl").DataTable({
+        //    "paging": true,
+        //    "lengthChange": false,
+        //    "searching": true,
+        //    "ordering": true,
+        //    "info": true,
+        //    "autoWidth": true,
+        //    "responsive": false,
+        //});
+
+
+        $("#LoanNo").inputmask({ mask: "999-99-9[999999]", greedy: false });
+        $("#SoftwareLoanNo").inputmask({ mask: "999-99-9[999999]", greedy: false });
+
+        var url = location.protocol + '//' + location.host + "/Api/GetLoanWithLimitAjax"
+        table = $('#tbl').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "searching": false,
+            "ajax":
+            {
+                "url": url,
+                "type": "POST",
+                data: function (data) {
+                    //filters the parameters sent to the server
+                    //for (var i = 0, len = data.columns.length; i < len; i++) {
+                    //    delete data.columns[i];
+                    //}
+                }
+            },
+            //rowId: 'id',
+            "columns": [
+                { "data": "MID" },
+                { data: "FormID", render: function (data, type, full, meta) { return '<b>' + full.FormID + '</b>' } },
+                { data: "BranchCode", render: function (data, type, full, meta) { return '<b>' + full.BranchCode + '</b>' } },
+                { data: "BranchName", render: function (data, type, full, meta) { return '<b>' + full.BranchName + '</b>' } },
+
+
+                { "data": "AplicantName" },
+                { "data": "LoanAmountTotal" },
+
+
+
+                {
+                    data: "Action",
+                    render: function (data, type, full, meta) {
+                        var approved = "approved('" + full.FormID + "')";
+                        var forward = "forward('" + full.FormID + "')";
+                        var reject = "reject('" + full.FormID + "')";
+                        if (full.BrLimit - full.LoanAmountTotal >= 0) {
+                            return '<div class="btn-group" style="width: 100px;" ><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default" value="' + full.FormID + '" onclick="' + approved + '"><i class="fa fa-check"></i> Approve</button></div >&nbsp;<div class="btn-group" style="width: 100px;" ><button class="btn btn-danger btn-sm" onclick="' + reject + '"><i class="fa fa-check"></i> Reject</button></div >';
+                        } else {
+                            return '<div class="btn-group" style="width: 100px;" ><button class="btn btn-primary btn-sm" onclick="' + forward + '"><i class="fa fa-check"></i> Forward</button></div >&nbsp;<div class="btn-group" style="width: 100px;" ><button class="btn btn-danger btn-sm" onclick="' + reject + '"><i class="fa fa-check"></i> Reject</button></div >';
+                        }
+
+                        //return '<button type="button" class="btn btn-primary btn-sm " id="save"  onClick="clicks(' + full.SlNo +')" >Approved</button>';
+
+
+                    }
+                },
+
+            ],
+            dom: 'lBfrtip',
+
+
+        });
+
+
+
+    $(document).on('click', '#save', function () {
+        setApproveData();
+        ValidateApproveData();
+        if (isValid == true) {
+            if (confirm("Do you want to approve?")) {
+                $.ajax({
+                    url: '@Url.Action("Approve", "LoanApprove")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify({ ApproveData }),
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (datas) {
+                        if (datas == 1) {
+                            alert("Successfully Approved.");
+                            location.reload();
+                        }
+                        else {
+                            alert("Error.");
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    var ApproveData = { FormID: 0, ApprovedDate: '', ApprovedUser: '', BranchCode: '', Status: '', ApprovalNo: '', LoanNo: '', SoftwareLoanNo:''}
+
+    function setApproveData() {
+        ApproveData.FormID = parseInt($("#FormID").val());
+        ApproveData.ApprovalNo = $("#ApprovalNo").val();
+        ApproveData.LoanNo = $("#LoanNo").val();
+        ApproveData.SoftwareLoanNo = $("#SoftwareLoanNo").val();
+
+    }
+
+    function ValidateApproveData() {
+        ApproveData.FormID = parseInt($("#FormID").val());
+        ApproveData.ApprovalNo = $("#ApprovalNo").val();
+        ApproveData.LoanNo = $("#LoanNo").val();
+        ApproveData.SoftwareLoanNo = $("#SoftwareLoanNo").val();
+
+    }
+    var isValid = true;
+    function ValidateApproveData() {
+        isValid = true;
+        if ($("#ApprovalNo").val() == undefined || $("#ApprovalNo").val() == null || $("#ApprovalNo").val() == "") {
+            setError("ApprovalNo", "Approval No Required ");
+            isValid = false;
+        }
+        if ($("#LoanNo").val() == undefined || $("#LoanNo").val() == null || $("#LoanNo").val() == "") {
+            setError("LoanNo", "Required Field");
+            isValid = false;
+        }
+
+
+    }
+
+
+    function setError(name, message) {
+        //RemoveError();
+        $('#' + name).after('<div id="error" class="red"><p style="color:red">' + message + '</p></div >');
+    }
+
+    function RemoveError() {
+
+        var element = document.getElementById("error");
+        if (element == null) {
+
+        }
+        else {
+            element.parentNode.removeChild(element);
+        }
+    }
+
+
+    function approved(id) {
+        $("#FormID").val(id);
+    }
+
+
+    function forward(id) {
+        if (confirm("Do you want to forward?")) {
+            $.ajax({
+                url: '@Url.Action("Forward", "LoanApprove")',
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({ id }),
+                type: 'POST',
+                dataType: 'json',
+                success: function (datas) {
+                    if (datas==1)
+                    {
+                        alert("Successfully Forwarded.");
+                        location.reload();
+                    }
+                    else {
+                        alert("Error.");
+                        location.reload();
+                    }
+                }
+            });
+        }
+    }
+    function reject(id) {
+        if (confirm("Do you want to Reject?")) {
+            $.ajax({
+                url: '@Url.Action("Reject", "LoanApprove")',
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({ id }),
+                type: 'POST',
+                dataType: 'json',
+                success: function (datas) {
+                    if (datas == 1) {
+                        alert("This Application is Rejected.");
+                        location.reload();
+                    }
+                    else {
+                        alert("Error.");
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+    }
+
+    function pad(num, size) {
+        num = num.toString();
+        while (num.length < size) num = "0" + num;
+        return num;
+    }
+
+</script>
+
+}

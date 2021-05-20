@@ -1,0 +1,37 @@
+﻿@model LoanSoftware.Models.LoanModel.BranchLimit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+
+
+<div>
+    <h4>BranchLimit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrLimit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LimitID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LoanSoftware.Models.VIEW.VBranchLimit>
+
+@{
+    ViewBag.Title = "Index";
+    var i = 1;
+}
+
+
+<div class="card card-primary card-outline card-outline-tabs">
+    <div class="card-body">
+        <table class="table table-bordered table-striped" id="tbl">
+            <thead style="font-family: 'Calibri'; text-align:center;">
+                <tr>
+                    <th>SL</th>
+                    <th>
+                        Branch Code
+                    </th>
+                    <th>
+                        Branch Name
+                    </th>
+                    <th>
+                        BranchLimit
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-family: 'Calibri'; text-align:center;">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BranchCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BranchName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrLimit)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.LimitID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.LimitID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.LimitID })
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script>
+        $("#tbl").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": false,
+        });
+    </script>
+
+}
+
+
+

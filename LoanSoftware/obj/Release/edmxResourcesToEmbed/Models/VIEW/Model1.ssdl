@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VBranchLimit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VBranchLimit">
+    <Key>
+      <PropertyRef Name="BrLimit" />
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="BranchName" Type="nvarchar(max)" />
+    <Property Name="BranchCode" Type="nvarchar(max)" />
+    <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="LimitID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VForwardPendingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VForwardPendingList">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+      <PropertyRef Name="LimitID" />
+      <PropertyRef Name="BrLimit" />
+    </Key>
+    <Property Name="BranchCode" Type="nvarchar(max)" />
+    <Property Name="MID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="AplicantName" Type="nvarchar(max)" />
+    <Property Name="DateofBirth" Type="datetime" />
+    <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FormID" Type="int" Nullable="false" />
+    <Property Name="LimitID" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="nvarchar(max)" />
+    <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BranchName" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VMemberLoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VMemberLoan">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+    </Key>
+    <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApprovalNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="MemberNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShareNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShareAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvestmentNo" Type="nvarchar(max)" />
+    <Property Name="AplicantName" Type="nvarchar(max)" />
+    <Property Name="DateofBirth" Type="datetime" />
+    <Property Name="FatherName" Type="nvarchar(max)" />
+    <Property Name="MotherName" Type="nvarchar(max)" />
+    <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Village" Type="nvarchar" MaxLength="50" />
+    <Property Name="PO" Type="nvarchar" MaxLength="50" />
+    <Property Name="PS" Type="nvarchar" MaxLength="50" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="PresentAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessNature" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessType" Type="nvarchar" MaxLength="50" />
+    <Property Name="MotiveofLoan" Type="nvarchar" MaxLength="200" />
+    <Property Name="DateOwn" Type="datetime" />
+    <Property Name="DateRent" Type="datetime" />
+    <Property Name="AmountRent" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NameRent" Type="nvarchar" MaxLength="100" />
+    <Property Name="OwnAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MLFile" Type="nvarchar(max)" />
+    <Property Name="LoanNo" Type="nvarchar(max)" />
+    <Property Name="BranchCode" Type="nvarchar(max)" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LastDate" Type="datetime" />
+    <Property Name="MonthlyAvarageIncome" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DailySaleAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DailyProfit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DailyIncome" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlySaleAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlyProfit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MonthlyIncome" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MAccountNo" Type="nvarchar(max)" />
+    <Property Name="AmountInAccount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LoanRecoveryDays" Type="int" />
+    <Property Name="LoanProvideDate" Type="datetime" />
+    <Property Name="LoanInstallmentAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LoanInstallment" Type="nvarchar(max)" />
+    <Property Name="SoftwareLoanNo" Type="nvarchar(max)" />
+    <Property Name="FieldNo" Type="nvarchar(max)" />
+    <Property Name="BiMudaraba_BIID" Type="int" />
+    <Property Name="CurrentSaving_CUID" Type="int" />
+    <Property Name="Guarantor_GID" Type="int" />
+    <Property Name="OtherBank_OID" Type="int" />
+    <Property Name="RetentionProperty_JID" Type="int" />
+    <Property Name="TRInvestment_TID" Type="int" />
+    <Property Name="FormID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LoanDB.dbo.VPendingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPendingList">
+    <Key>
+      <PropertyRef Name="MID" />
+      <PropertyRef Name="NID" />
+      <PropertyRef Name="FormID" />
+      <PropertyRef Name="LimitID" />
+      <PropertyRef Name="BrLimit" />
+    </Key>
+    <Property Name="BranchCode" Type="nvarchar(max)" />
+    <Property Name="MID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="AplicantName" Type="nvarchar(max)" />
+    <Property Name="DateofBirth" Type="datetime" />
+    <Property Name="NID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoanAmountTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FormID" Type="int" Nullable="false" />
+    <Property Name="LimitID" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="nvarchar(max)" />
+    <Property Name="BrLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BranchName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="LoanDBModelStoreContainer">
+    <EntitySet Name="VBranchLimit" EntityType="Self.VBranchLimit" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VBranchLimit].[BranchName] AS [BranchName], 
+    [VBranchLimit].[BranchCode] AS [BranchCode], 
+    [VBranchLimit].[BrLimit] AS [BrLimit], 
+    [VBranchLimit].[LimitID] AS [LimitID]
+    FROM [dbo].[VBranchLimit] AS [VBranchLimit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VForwardPendingList" EntityType="Self.VForwardPendingList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VForwardPendingList].[BranchCode] AS [BranchCode], 
+    [VForwardPendingList].[MID] AS [MID], 
+    [VForwardPendingList].[Date] AS [Date], 
+    [VForwardPendingList].[AplicantName] AS [AplicantName], 
+    [VForwardPendingList].[DateofBirth] AS [DateofBirth], 
+    [VForwardPendingList].[NID] AS [NID], 
+    [VForwardPendingList].[District] AS [District], 
+    [VForwardPendingList].[MobileNumber] AS [MobileNumber], 
+    [VForwardPendingList].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VForwardPendingList].[FormID] AS [FormID], 
+    [VForwardPendingList].[LimitID] AS [LimitID], 
+    [VForwardPendingList].[Expr1] AS [Expr1], 
+    [VForwardPendingList].[BrLimit] AS [BrLimit], 
+    [VForwardPendingList].[BranchName] AS [BranchName]
+    FROM [dbo].[VForwardPendingList] AS [VForwardPendingList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VMemberLoan" EntityType="Self.VMemberLoan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VMemberLoan].[MID] AS [MID], 
+    [VMemberLoan].[ApprovalNo] AS [ApprovalNo], 
+    [VMemberLoan].[Date] AS [Date], 
+    [VMemberLoan].[MemberNo] AS [MemberNo], 
+    [VMemberLoan].[ShareNumber] AS [ShareNumber], 
+    [VMemberLoan].[ShareAmount] AS [ShareAmount], 
+    [VMemberLoan].[InvestmentNo] AS [InvestmentNo], 
+    [VMemberLoan].[AplicantName] AS [AplicantName], 
+    [VMemberLoan].[DateofBirth] AS [DateofBirth], 
+    [VMemberLoan].[FatherName] AS [FatherName], 
+    [VMemberLoan].[MotherName] AS [MotherName], 
+    [VMemberLoan].[NID] AS [NID], 
+    [VMemberLoan].[Village] AS [Village], 
+    [VMemberLoan].[PO] AS [PO], 
+    [VMemberLoan].[PS] AS [PS], 
+    [VMemberLoan].[District] AS [District], 
+    [VMemberLoan].[PresentAddress] AS [PresentAddress], 
+    [VMemberLoan].[BusinessAddress] AS [BusinessAddress], 
+    [VMemberLoan].[PhoneNumber] AS [PhoneNumber], 
+    [VMemberLoan].[MobileNumber] AS [MobileNumber], 
+    [VMemberLoan].[Email] AS [Email], 
+    [VMemberLoan].[BusinessNature] AS [BusinessNature], 
+    [VMemberLoan].[BusinessType] AS [BusinessType], 
+    [VMemberLoan].[MotiveofLoan] AS [MotiveofLoan], 
+    [VMemberLoan].[DateOwn] AS [DateOwn], 
+    [VMemberLoan].[DateRent] AS [DateRent], 
+    [VMemberLoan].[AmountRent] AS [AmountRent], 
+    [VMemberLoan].[NameRent] AS [NameRent], 
+    [VMemberLoan].[OwnAmount] AS [OwnAmount], 
+    [VMemberLoan].[MLFile] AS [MLFile], 
+    [VMemberLoan].[LoanNo] AS [LoanNo], 
+    [VMemberLoan].[BranchCode] AS [BranchCode], 
+    [VMemberLoan].[Amount] AS [Amount], 
+    [VMemberLoan].[LastDate] AS [LastDate], 
+    [VMemberLoan].[MonthlyAvarageIncome] AS [MonthlyAvarageIncome], 
+    [VMemberLoan].[DailySaleAmount] AS [DailySaleAmount], 
+    [VMemberLoan].[DailyProfit] AS [DailyProfit], 
+    [VMemberLoan].[DailyIncome] AS [DailyIncome], 
+    [VMemberLoan].[MonthlySaleAmount] AS [MonthlySaleAmount], 
+    [VMemberLoan].[MonthlyProfit] AS [MonthlyProfit], 
+    [VMemberLoan].[MonthlyIncome] AS [MonthlyIncome], 
+    [VMemberLoan].[MAccountNo] AS [MAccountNo], 
+    [VMemberLoan].[AmountInAccount] AS [AmountInAccount], 
+    [VMemberLoan].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VMemberLoan].[LoanRecoveryDays] AS [LoanRecoveryDays], 
+    [VMemberLoan].[LoanProvideDate] AS [LoanProvideDate], 
+    [VMemberLoan].[LoanInstallmentAmount] AS [LoanInstallmentAmount], 
+    [VMemberLoan].[LoanInstallment] AS [LoanInstallment], 
+    [VMemberLoan].[SoftwareLoanNo] AS [SoftwareLoanNo], 
+    [VMemberLoan].[FieldNo] AS [FieldNo], 
+    [VMemberLoan].[BiMudaraba_BIID] AS [BiMudaraba_BIID], 
+    [VMemberLoan].[CurrentSaving_CUID] AS [CurrentSaving_CUID], 
+    [VMemberLoan].[Guarantor_GID] AS [Guarantor_GID], 
+    [VMemberLoan].[OtherBank_OID] AS [OtherBank_OID], 
+    [VMemberLoan].[RetentionProperty_JID] AS [RetentionProperty_JID], 
+    [VMemberLoan].[TRInvestment_TID] AS [TRInvestment_TID], 
+    [VMemberLoan].[FormID] AS [FormID]
+    FROM [dbo].[VMemberLoan] AS [VMemberLoan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPendingList" EntityType="Self.VPendingList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPendingList].[BranchCode] AS [BranchCode], 
+    [VPendingList].[MID] AS [MID], 
+    [VPendingList].[Date] AS [Date], 
+    [VPendingList].[AplicantName] AS [AplicantName], 
+    [VPendingList].[DateofBirth] AS [DateofBirth], 
+    [VPendingList].[NID] AS [NID], 
+    [VPendingList].[District] AS [District], 
+    [VPendingList].[MobileNumber] AS [MobileNumber], 
+    [VPendingList].[LoanAmountTotal] AS [LoanAmountTotal], 
+    [VPendingList].[FormID] AS [FormID], 
+    [VPendingList].[LimitID] AS [LimitID], 
+    [VPendingList].[Expr1] AS [Expr1], 
+    [VPendingList].[BrLimit] AS [BrLimit], 
+    [VPendingList].[BranchName] AS [BranchName]
+    FROM [dbo].[VPendingList] AS [VPendingList]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

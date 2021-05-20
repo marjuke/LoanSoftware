@@ -1,0 +1,57 @@
+﻿body {
+}
+
+@font-face {
+    font-family: 'SutonnyMJ';
+    src: url('../Content/fonts/SutonnyMJ.ttf');
+}
+
+#bfont {
+    font-family: SutonnyMJ;
+    color: #000;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+#centertext {
+    text-align: center;
+}
+
+.wpmaster{
+    margin:0;
+    width:100%;
+   /* background-color:#b6ff00;*/
+}
+
+.wpleft {
+    margin:0;
+    float:left;
+    width:40%;
+  
+}
+
+.wpright {
+    margin: 0;
+    float: left;
+    width: 50%;
+   
+}
+.wpright1 {
+    margin: 0;
+    float: left;
+    width: 55%;
+}
+.wpright2 {
+    margin: 0;
+    float: right;
+    width: 40%;
+}
+
+.perma{
+    padding-left:20px;
+}
+
+.perma1 {
+    padding-left: 300px;
+    text-align:right;
+}

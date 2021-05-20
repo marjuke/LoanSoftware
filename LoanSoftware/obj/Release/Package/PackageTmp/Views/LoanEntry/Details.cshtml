@@ -1,0 +1,1247 @@
+﻿@model LoanSoftware.Models.LoanModel.ViewModel.MemberLoanInfoVM
+
+@{ ViewBag.Title = "Details";
+
+    var MemberLoanData = ViewData["MemberLoanMainFrom"] as LoanSoftware.Models.LoanModel.MemberLoanInfo;
+    var BiMudarabaData = ViewData["BiMudaraInfo"] as List<LoanSoftware.Models.LoanModel.BiMudaraba>;
+    var CurrentSavingData = ViewData["CurrentSavingInfo"] as List<LoanSoftware.Models.LoanModel.CurrentSaving>;
+    var GuranterData = ViewData["GuranterInfo"] as List<LoanSoftware.Models.LoanModel.Guarantor>;
+    var OtherBanksData = ViewData["OtherBankData"] as List<LoanSoftware.Models.LoanModel.OtherBank>;
+    var TRInvestmentData = ViewData["TRInvestmentInfo"] as List<LoanSoftware.Models.LoanModel.TRInvestment>;
+    var i = 1;
+
+    DateTime? TRDate =new DateTime();
+    if (TRInvestmentData.Count != 0)
+    {
+        if (TRInvestmentData.First().TRDate != null)
+        {
+            TRDate = TRInvestmentData.FirstOrDefault().TRDate;
+        }
+
+    }
+    else
+    { TRDate = null; }
+}
+
+<link href="~/Content/LoanCSS.css" rel="stylesheet" />
+<div>
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content" id="bfont">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline" id="bfont">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="@MemberLoanData.MLFile"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center">@MemberLoanData.AplicantName</h3>
+
+                            <p class="text-muted text-center">@MemberLoanData.LoanNo</p>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>তারিখ</b> <a class="float-right">@MemberLoanData.Date</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>শাখা কোড</b> <a class="float-right">@MemberLoanData.BranchCode</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>অনুমোদন নং</b> <a class="float-right">@MemberLoanData.ApprovalNo</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>ঋণ / বিনিয়োগ হিসাব নম্বর</b> <a class="float-right">@MemberLoanData.LoanNo</a>
+                                </li>
+                            </ul>
+
+                            @*<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>*@
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- About Me Box -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">অন্যান্য তথ্য</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" id="bfont">
+                            <strong><i class="fas fa-book mr-1"></i>সদস্য পদ নম্বর : @MemberLoanData.MemberNo</strong>
+                            <hr>
+                            <strong><i class="fas fa fa-share"></i>শেয়ার সংখ্যা : @MemberLoanData.ShareNumber</strong>
+                            @*<p class="text-muted"></p>*@
+                            <hr>
+                            <strong><i class="fas fa fa-share"></i>শেয়ার টাকা : @MemberLoanData.ShareAmount</strong>
+                            <hr>
+                            <strong><i class="fas fa-code-branch"></i>ফিল্ড নং : @MemberLoanData.FieldNo</strong>
+                            <hr>
+                            @*<strong><i class="far fa-file-alt mr-1"></i> Notes</strong>*@
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">আবেদনকারীর তথ্য</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">সম্ভাব্য ক্রয় বিবরণী</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">জামিনদারবৃন্দের বিবরণ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings2" data-toggle="tab">নীতিমালা</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <!-- Post -->
+                                    <div class="post">
+                                        <div class="row">
+                                            <div class="input-group row col-md-6">
+                                                <p><b>১) আবেদনকারীর পূর্ণ নামঃ @MemberLoanData.AplicantName</b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-md-6">
+                                                <p><b>  জন্ম / নিবন্ধন তারিখঃ @MemberLoanData.DateofBirth</b></p>
+                                                <div class="col-md-8 ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group row col-md-6">
+                                                <p><b> ২) পিতা/স্বামীর নামঃ @MemberLoanData.FatherName </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-md-6">
+                                                <p><b>  ৩) মাতার নামঃ @MemberLoanData.MotherName</b></p>
+                                                <div class="col-md-8 ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group row col-md-12">
+                                                <p><b> ৪) জাতীয় পরিচয় পত্র নম্বরঃ @MemberLoanData.NID </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>৫) স্থায়ী ঠিকানাঃ</b></p>
+                                            </div>
+
+                                            <div class="form-group col-md-2 row">
+                                                <p><b> গ্রাম : @MemberLoanData.Village </b></p>
+                                                <div class="col-md-7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-2 row">
+                                                <p><b>জেলা : @MemberLoanData.District </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-2 row">
+                                                <p><b> ডাকঘর : @MemberLoanData.PO </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 row">
+                                                <p><b> থানা/উপজেলা : @MemberLoanData.PS</b></p>
+                                                <div class="col-md-5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b> ৬) বর্তমান ঠিকানাঃ</b></p>
+                                            </div>
+                                            <div class="input-group col-md-10 row">
+                                                <p><b> @MemberLoanData.PresentAddress</b></p>
+                                                <div class="col-md-11" style="padding-right:20px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>৭) ব্যবসায়িক ঠিকানা : </b></p>
+                                            </div>
+                                            <div class="input-group col-md-10 row">
+                                                <p><b>@MemberLoanData.BusinessAddress</b></p>
+                                                <div class="col-md-10" style="padding-right:20px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b> ৮) দূরালাপনীঃ </b></p>
+                                            </div>
+
+                                            <div class="input-group col-md-3 row">
+                                                <p><b> টেলিফোন নং :@MemberLoanData.PhoneNumber </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group col-md-4 row">
+                                                <p><b> মোবাইল নং : @MemberLoanData.MobileNumber </b></p>
+                                                <div class="col-md-9">
+                                                </div>
+                                            </div>
+                                            <div class="input-group col-md-3 row" style="font-family:Calibri">
+                                                <p><b> ই-মেইল : @MemberLoanData.Email </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 row">
+                                                <p><b> ৯) ব্যবসায়ের প্রকৃতিঃ @MemberLoanData.BusinessNature </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 row">
+                                                <p><b> ব্যবসার ধরন : @MemberLoanData.BusinessType </b></p>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p><b>১০) ঋণ/বিনিয়োগ গ্রহণের উদ্দেশ্য : </b></p>
+                                            </div>
+                                            <div class="input-group col-md-9 row">
+                                                <p><b> @MemberLoanData.MotiveofLoan  </b></p>
+                                                <div class="col-md-9" style="padding-right:20px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>১১) দোকান/ ব্যবসা প্রতিষ্ঠান মালিকানা শর্ত </b></p>
+                                            </div>
+                                            <div class="col-md-4 row">
+                                                ক. নিজস্ব
+                                                <div class="col-md-9">
+                                                    @MemberLoanData.DateOwn
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p><b> তারিখ হতে বহাল আছি</b></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-4 row">
+                                                খ. ভারাকৃত
+                                                <div class="col-md-9">
+                                                    @MemberLoanData.DateOwn
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p><b> তারিখ হতে ব্যবসা বহাল আছি</b></p>
+                                            </div>
+                                            <div class="col-md-3 row">
+                                                @MemberLoanData.AmountRent
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p><b>টাকা</b></p>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-2">
+
+                                            </div>
+                                            <div class=" col-md-3 row">
+                                                @*@Html.LabelFor(model => model.ContractualDate, "", htmlAttributes: new { @class = "control-label col-md-4" })*@
+                                                <label class="control-label col-md-4"></label>
+                                                <div class="col-md-8">
+                                                    @MemberLoanData.LastDate
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p><b> তারিখ পর্যন্ত</b></p>
+                                            </div>
+                                            <div class="col-md-3 row">
+                                                @MemberLoanData.NameRent
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p><b> মালিক এর কাছে পজেশন চুক্তি করেছি।</b></p>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><b>১২) ব্যবসা প্রতিষ্ঠানের আনুমানিক মজুদ মালের পরিমানঃ</b></p>
+                                            </div>
+                                            <div class="col-md-2 row">
+                                                @MemberLoanData.OwnAmount
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><b>টাকা । নিজস্ব মূলধনের পরিমান </b></p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @MemberLoanData.MonthlyAvarageIncome  টাকা
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+
+
+                                    </div>
+                                    <!-- /.post -->
+                                    <!-- Post -->
+                                    <div class="post clearfix">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>১৩) সাম্ভাব্য বিক্রয় ও আয় বিবরণীঃ</b></p>
+                                            </div>
+                                            <div class="col-md-10" style="padding-left:0px;padding-right:20px;">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>বিবরণ</th>
+                                                            <th>বিক্রয় (টাকা)</th>
+                                                            <th> লাভের হার (%)</th>
+                                                            <th> আয় (টাকা)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>দৈনিক</td>
+                                                            <td>
+                                                                @MemberLoanData.DailySaleAmount
+                                                            </td>
+                                                            <td>
+                                                                @MemberLoanData.DailyProfit
+                                                            </td>
+                                                            <td>
+                                                                @MemberLoanData.DailyIncome
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td>মাসিক</td>
+                                                            <td>
+                                                                @MemberLoanData.MonthlySaleAmount
+                                                            </td>
+                                                            <td>
+                                                                @MemberLoanData.MonthlyProfit
+                                                            </td>
+                                                            <td>
+                                                                @MemberLoanData.MonthlyIncome
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>১৪) ক. চলতি/সঞ্চয়ী হিসাব বিবরণীঃ</b></p>
+                                            </div>
+                                            <div class="col-md-4 row">
+                                                হিসাব নং :
+                                                <div class="col-md-10">
+                                                    @MemberLoanData.MAccountNo
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                বর্তমান স্থিতি :
+                                                <div class="col-md-7">
+                                                    @MemberLoanData.AmountInAccount
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <p><b>টাকা ।</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p><b>খ. বিশেষ সঞ্চয় হিসাব বিবরণীঃ</b></p>
+                                            </div>
+                                            <div class="col-md-10" style="padding-left:1px;padding-right:20px;">
+                                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="CurrentSaving">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>বিবরণ</th>
+                                                            <th>হিসাব নং</th>
+                                                            <th>হিশাব খোলার তারিখ</th>
+                                                            <th>কিস্তির পরিমাণ (টাকা) </th>
+                                                            <th>বর্তমান স্থিতি (টাকা)</th>
+                                                            <th>নিয়মিত / অনিয়মিত</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+
+                                                        @foreach (var items in ViewData["CurrentSavingInfo"] as List
+                                                        <LoanSoftware.Models.LoanModel.CurrentSaving>
+                                                            )
+                                                        {
+
+                                            <tr>
+                                                <th id="cool0">
+                                                    <div>
+                                                        @items.TypesofSavings
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool1">
+                                                    <div>
+                                                        @items.AccountNo
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool2">
+                                                    <div>
+                                                        @items.AccountopenDate
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool3">
+                                                    <div>
+                                                        @items.InstallmentAmount
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.PresentAmount
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    @* @Html.LabelFor(model => model.Complication, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                    <div>
+                                                        @items.Status
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                                i++;
+                                        }
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><b>১৫) পূর্বে গৃহীত বাই-মুরাবাহা ক্ষুদ্র/সাধারন/চলতি মূলধন ঋণ/বিনিয়োগ বিবরনঃ</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered" id="BiMudaraba">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ঋণ/বিনিয়োগের ধরণ</th>
+                                                            <th>ঋণ/বিনিয়োগের বিবরণ</th>
+                                                            <th>বিনিয়োগের পরিমান</th>
+                                                            <th>গ্রহণের তারিখ </th>
+                                                            <th>মেয়াদোত্তীর্ণের তারিখ</th>
+                                                            <th>বর্তমান স্থিতি</th>
+                                                            <th>ব্যবসায় নিজস্ব মূলধন</th>
+                                                            <th>মজুদ মালের পরিমান</th>
+                                                            <th>দৈনিক / মাসিক গড় বিক্রয়</th>
+                                                            <th>দৈনিক / মাসিক গড় আয়</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        @foreach (var items in ViewData["BiMudaraInfo"] as List
+                                                        <LoanSoftware.Models.LoanModel.BiMudaraba>
+                                                            )
+                                                        {
+
+
+                                            <tr>
+                                                <th id="cool0">
+                                                    <div>
+                                                        @items.TypeofInvestment
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool1">
+                                                    <div>
+                                                        @items.DescriptionofInvestment
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool2">
+                                                    <div>
+                                                        @items.InvestmentAmount
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool3">
+                                                    <div>
+                                                        @items.ExecptDate
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.ExpireDate
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    @* @Html.LabelFor(model => model.Complication, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                    <div>
+                                                        @items.PresentStatus
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.OwnBussinessAsset
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.GodownStock
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.AverageSales
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.AverageIncome
+                                                    </div>
+                                                </th>
+                                            </tr>}
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><b>১৬) ডিএমসিবি ব্যতীত অন্যান্য আর্থিক প্রতিষ্ঠানের দায়-দেনার বিবরনঃ</b></p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="OtherBank">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>বিনিয়োগ প্রদানকারী প্রতিষ্ঠানের নাম</th>
+                                                            <th>ঋণ/বিনিয়োগের পরিমান</th>
+                                                            <th>গ্রহণের তারিখ </th>
+                                                            <th>মেয়াদোত্তীর্ণের তারিখ</th>
+                                                            <th>বর্তমান স্থিতি</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        @foreach (var items in ViewData["OtherBankData"] as List
+                                                            <LoanSoftware.Models.LoanModel.OtherBank>
+                                                                  )
+                                                        {
+
+                                            <tr>
+                                                <th id="cool0">
+                                                    <div>
+                                                        @items.NameofOtherBank
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool1">
+                                                    <div>
+                                                        @items.LoanAmount
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool2">
+                                                    <div>
+                                                        @items.ExceptLoanDate
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool3">
+                                                    <div>
+                                                        @items.ExpireLoanDate
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.PresentLoanAmount
+                                                    </div>
+                                                </th>
+
+                                            </tr>}
+                                                    </tfoot>
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                        <br />
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><b>১৭) জামানত / বন্দকী সম্পত্তি বিবরণঃ</b></p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <table class="table table-head-fixed text-nowrap table-bordered" style="width:100%" id="Retention">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>বিবরণ</th>
+                                                            <th>মৌজার নাম </th>
+                                                            <th>দলিল নং</th>
+                                                            <th>খতিয়ান নং</th>
+                                                            <th>দাগ নং</th>
+                                                            <th>জমির পরিমান</th>
+                                                            <th>সম্পত্তির সম্ভাব্য বাজার মূল্য</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+
+                                                        @foreach (var items in ViewData["RetentionPropertyInfo"] as List
+                                                        <LoanSoftware.Models.LoanModel.RetentionProperty>
+                                                                )
+                                                        {
+
+                                            <tr>
+                                                <th id="cool0">
+                                                    <div>
+                                                        @items.RetentionDescription
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool1">
+                                                    <div>
+                                                        @items.MoujaName
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool2">
+                                                    <div>
+                                                        @items.DocumentNo
+                                                    </div>
+                                                </th>
+
+                                                <th id="cool3">
+                                                    <div>
+                                                        @items.LedgerNo
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.StainsNo
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.LandAmount
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    <div>
+                                                        @items.MinimumPrice
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                                    }
+                                                    </tfoot>
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row" style="padding-left:10px;">
+                                            <p>
+                                                <b>
+                                                    আমার/ আমাদের বর্ণিত উপরোক্ত তথ্যাবলী ভিত্তিতে আপনার শাখা হতে বাই-মুরাবাহা ক্ষুদ্র/ সাধারন/ চলতি মূলধন ঋণ/ বিনিয়োগ প্রকল্পের আওতায় @MemberLoanData.LoanAmountTotal টাকা দৈনিক/ মাসিক @MemberLoanData.LoanInstallmentAmount টাকা করে @MemberLoanData.LoanInstallment টি কিস্তিতে @MemberLoanData.LoanRecoveryDays দিনে/মাসে নতুন / নবায়ন/ বধিতকরণ ঋণ/ বিনিয়োগ @MemberLoanData.LoanProvideDate তারিখের মধ্যে পাওয়ার জন্য আবেদন করছি ।
+                                                </b>
+                                            </p>
+
+                                        </div>
+                                        <br />
+                                        <br />
+
+                                        <p>...........................................................</p>
+                                        <p>
+                                            ঋণ / বিনিয়োগ আবেদনকারীর স্বাক্ষর
+                                        </p>
+                                    </div>
+                                    <!-- /.post -->
+                                </div>
+
+
+
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="timeline">
+                                    <!-- The timeline -->
+                                    <div>
+                                        <div class="">
+                                            <section class="content-header">
+                                                <div class="container-fluid">
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-12">
+                                                            <h1 class="text-center">সম্ভাব্য ক্রয় বিবরণী</h1>
+                                                            <hr />
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.container-fluid -->
+                                            </section>
+
+                                            <section class="content">
+                                                <div class="container-fluid card card-primary">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <!-- general form elements -->
+                                                            <div class="">
+                                                                <form>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group row">
+                                                                            তারিখ : @TRDate
+
+                                                                            @* @Html.EditorFor(model => model.TRDate, new { htmlAttributes = new { @class = "form-control col-md-6 date" } })*@
+                                                                            <div>
+
+                                                                                @Html.ValidationMessageFor(model => model.TRDate, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="text-bold" style="padding-left:10px;">
+                                                            <p id="jamindar">
+                                                                ক্রেতার নামঃ দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,@MemberLoanData.BranchCode  শাখা ক্রেতার পক্ষে ঋণ / বিনিয়োগ আবেদনকারীর নাম-----------------------------------
+
+                                                                সদস্য নম্বর -----------/----------/--------- আবেদনকৃত বিনিয়োগের পরিমাণ ------------------------------------ টাকা (কথায়) --------------------------------------------------------------------
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <table class="table table-bordered" style="width:100%" id="TRInvestment">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th rowspan="2" class="text-center">ক্রমিক নং</th>
+                                                                        <th rowspan="2" class="text-center">মালের বিবরণ</th>
+                                                                        <th rowspan="2" class="text-center">পরিমাণ</th>
+                                                                        <th colspan="3" class="text-center">টাকা</th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th> সম্ভাব্য ক্রয়মূল্য(টাকা)</th>
+                                                                        <th> সম্ভাব্য বিক্রয়মূল্য(টাকা)</th>
+                                                                        <th>সম্ভাব্য লাভ</th>
+                                                                    </tr>
+
+                                                                </thead>
+                                                                <tfoot>
+                                                                    @foreach (var items in ViewData["TRInvestmentInfo"] as List
+                                                                    <LoanSoftware.Models.LoanModel.TRInvestment>
+                                                                    )
+                                                                    {
+
+                                                        <tr>
+                                                            <th id="cool0">
+                                                                <div>
+                                                                    @items.SlNo
+                                                                </div>
+                                                            </th>
+
+                                                            <th id="cool1">
+                                                                <div>
+                                                                    @items.ProductDescription
+                                                                </div>
+                                                            </th>
+
+                                                            <th id="cool2">
+                                                                <div>
+                                                                    @items.QTY
+                                                                </div>
+                                                            </th>
+
+                                                            <th id="cool3">
+                                                                <div>
+                                                                    @items.Buyamount
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div>
+                                                                    @items.TRSalesAmount
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div>
+                                                                    @items.MinimumProfit
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+
+
+
+                                                    }
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                </div>
+                                            </section>
+                                        </div>
+
+                                        <br />
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-3">..........................................................</div>
+                                            <div class="col-md-3">...........................................</div>
+                                            <div class="col-md-3">.....................................</div>
+                                            <div class="col-md-3">.....................................</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">ঋণ/বিনিয়োগ আবেদনকারীর স্বাক্ষর</div>
+                                            <div class="col-md-3">বিনিয়োগ কর্মকর্তার স্বাক্ষর </div>
+                                            <div class="col-md-3">২য় কর্মকর্তার স্বাক্ষর </div>
+                                            <div class="col-md-2">ব্যবস্থাপকের স্বাক্ষর</div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="settings">
+                                    <div class="">
+                                        <section class="content-header">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h1 class="text-center">জামিনদারবৃন্দের পরিচিতি ও অঙ্গীকারনামা</h1>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.container-fluid -->
+                                        </section>
+
+                                        <section class="content">
+                                            <div class="container-fluid card card-primary">
+
+                                                <div class="text-bold" style="padding-left:10px;">
+
+                                                    <p id="jamindar">
+                                                        আমি/আমরা দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,------------------------- শাখা থেকে ঋণ / বিনিয়োগ প্রাপ্তির আবেদনকারী এবং এ মর্মে প্রত্যয়ন করছি যে,
+                                                        নিম্নবর্ণিত ব্যক্তিগন আমার
+                                                        গ্রহণকৃত-------------------------------- টাকার ঋণ / বিনিয়োগের দায়বদ্ধতা সম্পর্কে অবহিত হয়ে আমার ঋণ / বিনিয়োগের জামিনদার হিসাবে তাদের নিজস্ব অঙ্গীকার প্রদান
+                                                        করছেন।
+                                                        <br />
+                                                        <br />
+
+                                                        আমি/আমরা এ মর্মে প্রত্যয়ন করছি যে, জনাব ------------------------------------------------------- আমার/আমাদের ব্যক্তিগতভাবে পরিচিত এবং তার সাধারণ ঋণ /
+                                                        বিনিয়োগের আওতায় গ্রহণকৃত --------------------------------- (কথায়-----------------------------------------------------) টাকার জামিনদার হতে সম্মত
+                                                        আছি। আমি/আমরা এ মর্মে অঙ্গীকার করছি যে, গ্রাহক যদি গ্রহণকৃত ঋণ / বিনিয়োগের অর্থ নির্ধারিত মেয়াদের মধ্যে পরিশোধ না করে সেক্ষেত্রে আমি/আমরা উক্ত ঋণ/বিনিয়োগের অর্থ
+                                                        সম্পূর্নভাবে পরিশোধ করব। অন্যথায় দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড, ---------------------------- শাখা আমি/আমাদের বিরুদ্ধে প্রয়োজনীয় আইনগত ব্যবস্থা
+                                                        গ্রহণ করে উক্ত ঋণ / বিনিয়োগের অনাদায়ী সমুদয় অর্থ (আসল, মুনাফা, পেনাল্টি চার্জ, মামলার খরচ, আইনগত প্রক্রিয়ার অন্যান্য আনুষঙ্গিক খরচ ও ক্ষতিপূরণ) আদায়ের ব্যবস্থা গ্রহণ
+                                                        করতে পারবে। জামিনদার হিসাবে ঋণ / বিনিয়োগের দায়বদ্ধতা সম্পর্কে সম্পূর্ন সচেতন ও অবহিত হয়ে স্বজ্ঞানে ও স্বেচ্ছায় প্রত্যাহার অযোগ্য এ জামিনদার পত্রে আমি/আমরা স্বাক্ষর করলাম।
+
+                                                    </p>
+
+                                                </div>
+
+                                                @foreach (var item in GuranterData)
+                                                {
+                                                    <div class="row">
+                                                        <!-- left column -->
+                                                        <div class="col-md-5">
+                                                            <!-- general form elements -->
+                                                            <div class="">
+                                                                <form>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group row">
+                                                                           জামিনদারের নাম :                                                                             
+                                                                            <div class = "col-md-4">
+                                                                                @item.GuarantorName
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           পিতার/স্বামীর নাম                                                                           
+                                                                            <div class="">
+                                                                                @item.GuarantorFather
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                           স্থায়ী ঠিকানা(গ্রামঃ                                                                          
+                                                                            <div>                                                                               
+                                                                                @item.PermanentVillage
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">                                                                           
+                                                                            থানা/উপজেলাঃ                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorPS  
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           বর্তমান ঠিকানা :                                                                          
+                                                                            <div>
+                                                                                @item.GuarantorPresentAddress   
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           জাতীয় পরিচয় পত্র নম্বর :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorNID   
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           ঋণ/বিনিয়োগ আবেদনকারীর সাথে সম্পর্কঃ                                                                            
+                                                                            <div>
+                                                                                @item.GuarantorRelation      
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-5">
+                                                            <!-- general form elements -->
+                                                            <div class="">
+                                                                <form>
+                                                                    <div class="card-body mb-1">
+                                                                        <div class="form-group row">
+                                                                           জন্ম তারিখ : 
+                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorDateofBirth                                                                               
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           মাতার নাম :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorMother                                                                               
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           ডাকঘর :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorPO                                                                               
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            জেলা :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorPermanentDistrict                                                                                
+                                                                            </div>
+                                                                        </div><div class="form-group row">
+                                                                            ব্যবসায়িক ঠিকানা :                                                                            
+                                                                            <div>
+                                                                                @item.GuarantorBusinessAddress                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            টেলিফোন/মোবাইল :                                                                            
+                                                                            <div>
+                                                                                @item.GuarantorPhone                                                                               
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                           জামিনদারের পেশা :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorOccupation                                                                               
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <!-- general form elements -->
+                                                            <div class="card card-primary">
+                                                                <div class="card-body box-profile">
+                                                                    <div class="row">
+                                                                        <div id='img_contain' style="padding-left:2%;">
+                                                                            <img id="sample_img" src="@item.FilePath" alt="your image" title='' width="150" height="170" />
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    @*<div class="input-group">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="GuarantorPic">
+                                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                        </div>
+                                                                    </div>*@
+                                                                </div>
+                                                                <!-- /.card-body -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="">
+                                                                <form>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group row">
+                                                                           DMCB এ সঞ্চয় হিসাব (যদি থাকে) CD / SB / MSP / WSP / BSP / ESP / MTDR মোট সঞ্চয়ঃ 
+                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorDmcbSavingAmount                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 row">
+                                                            <div class="col-md-6">
+                                                                <form>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group row">
+                                                                            DMCB এর বিনিয়োগ হিসাব নং (যদি থাকে)                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorDmcbLoanName                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <form>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group row">
+                                                                            বিনিয়োগের পরিমান :                                                                           
+                                                                            <div>
+                                                                                @item.GuarantorDmcbLoanAmount                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @* end *@
+
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="settings2">
+                                    <div class="">
+                                        <section class="content-header">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h1 class="text-center">ঋণ / বিনিয়োগ চুক্তিভঙ্গ / খেলাপী সম্পর্কে অঙ্গীকারনামা ও সম্মতিপত্র</h1>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.container-fluid -->
+                                        </section>
+
+                                        <section class="content">
+                                            <div class="container-fluid card card-primary">
+
+                                                <div class="text-bold" style="padding-left:10px;">
+
+                                                    <p id="plast">
+
+
+                                                        #	আমি / আমরা ঋণ / বিনিয়োগ গ্রহীতা এ মর্মে অঙ্গীকার করছি যে, আমার ঋণ / বিনিয়োগের...................টাকা নির্ধারিত মেয়াদের মধ্যে মুনাফাসহ...............টি মাসিক কিস্তিতে পরিশোধ করবো।<br />
+
+                                                        #	দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড কর্তৃক প্রণীত বিনিয়োগের সকল শর্তাবলী যথাযথভাবে মেনে চলব।<br />
+
+                                                        #	আমি / আমরা আরও নিশ্চয়তা প্রদান করছি যে,...............টাকার একটি দৈনিক/সাপ্তাহিক...............বৎসর মেয়াদী এবং টাকার একটি মাসিক সঞ্চয় প্রকল্প.............বৎসর মেয়াদী খুলবো এবং নিয়মিত পরিচালনা করবো।<br />
+
+                                                        #	আমি / আমরা অঙ্গীকার করছি যে, ভবিষ্যতে আপনার প্রতিষ্ঠানের ঋণ/বিনিয়োগ পরিশোধের পূর্বে আমি / আমরা অন্য কোন ব্যাংক এন.জি.ও অথবা অন্য
+                                                        কোন আর্থিক প্রতিষ্ঠান থেকে ঋণ/বিনিয়োগ গ্রহণ করব না।<br />
+                                                        #	আমি / আমরা এতদ্বারা অঙ্গীকার করছি যে, আমার / আমাদের আবেদনপত্রে বর্ণিত তফসিলকৃত সম্পত্তি উক্ত ঋণ / বিনিয়োগ পরিশোধ না করা পর্যন্ত
+                                                        ব্যাংকের নিকট দায়বদ্ধ থাকবে যা প্রয়োজনবোধে ব্যাংক বিক্রি করে ব্যাংকের ঋণ / বিনিয়োগ বাবদ পাওনা আসল ও মুনাফা আদায় করে নিতে পারবে।
+                                                        এতে আমার / আমাদের কোন ওজর আপত্তি থাকলে তা সর্ব আদালতে আইনত অগ্রাহ্য হবে। ব্যাংক হতে গৃহীত ঋণ / বিনিয়োগ পরিশোধ না করা পর্যন্ত
+                                                        তফসিল বর্ণিত সম্পত্তি কারো নিকট বিক্রয়/দায়বদ্ধ/হস্তান্তর করব না এবং জমির খাজনাদি নিয়মিত পরিশোধ করব।<br /><br />
+
+                                                        ঋণ / বিনিয়োগ চুক্তিভঙ্গ / খেলাপী সম্পর্কে সম্মতিপত্রঃ<br /><br />
+                                                        আমি / আমরা এ মর্মে ঘোষনা করছি যে, অত্র আবেদনপত্রে দাখিলকৃত সমস্ত তথ্যাবলী সস্পূর্ন নির্ভূল ও সত্য। আমি / আমরা এ মর্মে প্রতিশ্র“তি ও অঙ্গীকার করছি যে,
+                                                        মঞ্জুরীকৃত ঋণ / বিনিয়োগের অর্থ উলে­খিত ব্যবসার কাজে যথাযথ ব্যবহার করব এবং এ অর্থ কোন ক্রমেই অন্য কোন  কাজে ব্যবহার করব না। আমি / আমরা আরও
+                                                        অঙ্গীকার করছি যে, গৃহীত ঋণ / বিনিয়োগের টাকা শর্তানুযায়ী সময়মত মুনাফাসহ পরিশোধ করব। নির্ধারিত মেয়াদের মধ্যে গ্রহনকৃত ঋণ / বিনিয়োগের অর্থ পরিশোধ
+
+                                                        না করলে দি ঢাকা মার্কেন্টাইল কো-অপারেটিভ ব্যাংক লিমিটেড,..............শাখা সমবায় আইনের ধারা ৩২ মোতাবেক সার্টিফিকেট মামলা দায়ের সহ
+
+                                                        সকল প্রকার আইনগত ব্যবস্থা গ্রহন করে আমার নিকট থেকে ঋণ / বিনিয়োগের অনাদায়ী সমুদয় অর্থ (আসল, মুনাফা, পেনাল্টি চার্জ, মামলার খরচ, আইনগত প্রক্রিয়ার
+                                                        অন্যান্য আনুষঙ্গিক খরচ ও ক্ষতি পূরণ) আদায়ের ব্যবস্থা করতে পারবে।<br /><br /><br />
+
+                                                        ........................................................... <br />
+                                                        ঋণ/বিনিয়োগ আবেদনকারীর স্বাক্ষর <br />
+                                                        (ব্যবস্থাপক/২য় কর্মকর্তা কর্তৃক সত্যায়িত) <br /><br /><br />
+                                                        শাখা ব্যবস্থাপক ও কর্মকর্তার মন্তব্যঃ<br /><br />
+                                                        আমি/আমরা পৃথকভাবে সরেজমিনে বিনিয়োগ সংক্রান্ত তথ্য অনুসন্ধান ও তদন্ত করে বিনিয়োগ আবেদনকারীর দেয়া তথ্যাবলী (আবেদনপত্রের প্রথম হতে শেষ পর্যন্ত) বিনিয়োগ কর্মকর্তার
+                                                        দেয়া মতামত এবং সঞ্চয় ও ঋণ / বিনিয়োগের তথ্যাবলী সঠিক বলে প্রতীয়মান হওয়ায় তার অনুকলে...........................টাকা ক্ষুদ্র/ সাধারণ/ চলতি মূলধন ঋণ / বিনিয়োগ নতুন / নবায়ন / পুনঃনবায়ন ও বর্ধিতকরণ মঞ্জুরি প্রদানের সুপারিশ করছি, যা দৈনিক/মাসিক............টাকা করে............টি কিস্তিতে আদায়যোগ্য হবে।
+                                                        আমি / আমরা ঋণ / বিনিয়োগ গ্রহীতার ও জামিনদারের সই / স্বাক্ষর সনাক্ত করলাম। তারা আমার / আমাদের সামনে নিজ নিজ
+                                                        নাম সই/স্বাক্ষর করেছেন।<br /><br /><br />
+
+
+                                                        ................................. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        .................................&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        .................................&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        .................................<br />
+                                                        &nbsp; বিনিয়োগ কর্মকর্তা&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        &nbsp;প্রতিনিধি&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        &nbsp;২য় কর্মকর্তা&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        &nbsp;ব্যবস্থাপক
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </section>                                       
+          
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model LoanSoftware.Models.LoanModel.ViewModel.MemberLoanInfoVM
+    @{
+        ViewBag.Title = "Details";
+
+        var MemberLoanData = ViewData["MemberLoanMainFrom"] as LoanSoftware.Models.LoanModel.MemberLoanInfo;
+        var BiMudarabaData = ViewData["BiMudaraInfo"] as List<LoanSoftware.Models.LoanModel.BiMudaraba>;
+        var CurrentSavingData = ViewData["CurrentSavingInfo"] as List<LoanSoftware.Models.LoanModel.CurrentSaving>;
+        var GuranterData = ViewData["GuranterInfo"] as List<LoanSoftware.Models.LoanModel.Guarantor>;
+        var OtherBanksData = ViewData["OtherBankData"] as List<LoanSoftware.Models.LoanModel.OtherBank>;
+        var TRInvestmentData = ViewData["TRInvestmentInfo"] as List<LoanSoftware.Models.LoanModel.TRInvestment>;
+    }
+
+
+    <div class=" col-md-8" id="print">
+        <table class="table  table-striped table-bordered table-hover compact table-condensed" id="infoTable">
+            <tbody>
+                <tr>
+                    <td class="colorPrimary text-uppercase">Loan No</td>
+                    <td>@MemberLoanData.LoanNo</td>
+                </tr>
+
+
+                <tr>
+                    <td class="colorPrimary text-uppercase">Applicant Name:</td>
+                    <td>@MemberLoanData.AplicantName</td>
+                </tr>
+                <tr>
+                    <td class="colorPrimary text-uppercase">Approve No</td>
+                    <td>@MemberLoanData.ApprovalNo</td>
+                </tr>
+
+                <tr>
+                    <td class="colorPrimary text-uppercase">Date</td>
+                    <td>@Html.DisplayFor(model => model.Date)</td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+
+    </div>*@
+
+
